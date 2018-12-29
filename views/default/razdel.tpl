@@ -33,9 +33,9 @@
 
           <div class="pagination d-flex justify-content-center pt-5 pb-5">
             <div class="pagination__wrapper d-flex justify-content-between align-items-baseline">
-              <a href="#" id="page-1" class="link link_page link_light">1</a>
+              <a href="#" id="page-1" class="link link_page link_light active">1</a>
               <a href="#" id="page-2" class="link link_page link_light">2</a>
-              <a href="#" id="page-3" class="link link_page link_light active">3</a>
+              <a href="#" id="page-3" class="link link_page link_light">3</a>
               <a href="#" id="page-4" class="link link_page link_light">4</a>
               <a href="#" id="page-5" class="link link_page link_light">5</a>
               <a href="#" id="page-6" class="link link_page link_light">...</a>

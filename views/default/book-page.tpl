@@ -47,7 +47,8 @@
               </div>
 
               <div class="button__wrapper ml-auto mr-auto mr-xl-0">
-                <button type="submit" id="addCart_{$itemId}" onClick="addToCart({$itemId})" class="button button_square">Добавить в корзину</button>
+                <!-- <button type="submit" id="addCart_{$itemId}" onClick="addToCart({$itemId})" class="button button_square">Добавить в корзину</button> -->
+                <button type="submit" class="button button_square">Добавить в корзину</button>
               </div>
             </form>
 

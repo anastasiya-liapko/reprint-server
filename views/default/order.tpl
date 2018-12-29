@@ -56,7 +56,9 @@
                   </div>
 
                   <div class="order__item-del d-flex justify-content-end order-2 order-md-9">
-                    <span class="iconmoon icon-del"></span>
+                    <div class="order__item-del-wrapper">
+                      <span class="iconmoon icon-del"></span>
+                    </div>
                   </div>
                 </div>
 

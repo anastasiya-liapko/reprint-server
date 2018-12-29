@@ -30,7 +30,7 @@ function indexAction($smarty) {
         $explode_url_2 = explode('&', $explode_url_1[1]);
         $currentUrl = $explode_url_2[0];
     }
-    // d($currentUrl);
+    
     $rsCategories = getAllMainCats();
 
     $smarty->assign('pageTitle', 'Reprint');
