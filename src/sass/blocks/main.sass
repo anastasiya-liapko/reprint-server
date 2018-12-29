@@ -1,0 +1,33 @@
+.main
+  flex-grow: 1
+  min-height: 100%
+  background-color: $light-grey
+
+.main_index
+  display: flex
+  background-color: $medium-grey
+  .container
+    min-height: 847px
+    height: auto
+    background-image: url(../img/home.jpg)
+    background-repeat: no-repeat
+    background-position: top
+    background-size: cover
+
+@media(max-width: 1200px)
+
+  .main_index
+    .container
+      min-height: 847px
+
+@media(max-width: 992px)
+
+  .main_index
+    .container
+      min-height: 490px
+
+@media(max-width: 576px)
+
+  .main_index
+    .container
+      min-height: 400px

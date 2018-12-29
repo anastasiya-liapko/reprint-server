@@ -1,0 +1,80 @@
+.select__wrapper>div
+  width: 100%
+
+.jq-selectbox
+  width: 100%
+  height: 38px
+  li:hover
+    background-color: #3b3b3b !important
+
+.jq-selectbox__select
+  padding-left: 18px !important
+  color: #000000 !important
+  background: #ffffff !important
+  border: 1px solid #3b3b3b !important
+  border-radius: 0 !important
+  box-shadow: none !important
+
+.jq-selectbox__select-text
+  font-family: $font-roboto
+  font-size: 14px
+  font-weight: $regular
+  font-style: normal
+  font-stretch: normal
+  letter-spacing: normal
+  text-align: left
+  color: #000000
+
+.jq-selectbox__trigger
+  position: relative
+  width: 38px
+  height: 38px
+  color: #ffffff
+  background-color: #333333
+  &:hover
+    background-color: #ffffff
+    border-left: 1px solid #3b3b3b
+  &:hover .jq-selectbox__trigger-arrow::before,
+  &:hover .jq-selectbox__trigger-arrow::after
+    background-color: #333333
+  &:active
+    background-color: #333333
+    border-left: none
+  &:active .jq-selectbox__trigger-arrow::before,
+  &:active .jq-selectbox__trigger-arrow::after
+    background-color: #ffffff
+.jq-selectbox__trigger-arrow::before
+  content: ""
+  position: absolute
+  width: 2px !important
+  height: 6px !important
+  margin-top: -3px
+  margin-left: -6px
+  background-color: #ffffff
+  transform: rotate(-45deg)
+.jq-selectbox__trigger-arrow::after
+  content: ""
+  position: absolute
+  width: 2px !important
+  height: 6px !important
+  margin-top: -3px
+  margin-left: -2px
+  background-color: #ffffff
+  transform: rotate(45deg)
+
+.jq-selectbox__dropdown
+  li
+    text-align: left !important
+    border: 1px solid #3b3b3b !important
+  li.selected
+    background-color: #333333 !important
+
+@media(min-width: 768px)
+
+  .select__wrapper>div
+    width: 30%
+
+
+
+
+

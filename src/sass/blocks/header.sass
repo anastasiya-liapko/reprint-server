@@ -1,0 +1,99 @@
+.header
+  color: #ffffff
+  background-color: #333333
+
+.header_page
+  .header__title,
+  .search-form__open,
+  .search-form__close
+    display: none !important
+  .header__search
+    width: 100%
+
+.header_index
+  .search-form
+    display: none !important
+
+.header__menu,
+.header__search,
+.header__basket
+  width: 50%
+
+.header_index.open
+  .search-form__open,
+  .header__menu
+    display: none
+  .header__search
+    padding-top: 6px !important
+    padding-bottom: 5px !important
+  .search-form_index
+    display: flex !important
+    margin-left: 0
+    margin-right: 0
+    animation-name: fade-in
+    animation-duration: 0.2s
+
+@keyframes fade-in
+  from 
+    opacity: 0.5
+  to
+    opacity: 1
+
+@keyframes fade-out
+  from 
+    opacity: 1
+  to
+    opacity: 0.5
+
+@media(min-width: 576px)
+
+  .header_page
+    .header__menu,
+    .header__basket
+      width: auto
+      flex-grow: 0 !important 
+
+  .header_index.open
+    .header__search
+      width: 100%
+
+@media(min-width: 768px)
+
+  .header__menu,
+  .header__search,
+  .header__basket
+    width: auto
+
+  .header_index.open
+    .header__search
+      width: auto
+
+@media(min-width: 992px)
+
+  .header_page
+    .header__menu
+      margin-left: 40px
+
+  .header_index.open
+    .header__title
+      display: none
+    .header__menu
+      display: flex
+    .search-form_index
+      .search-form__input
+        width: 386px
+
+@media(min-width: 1200px)
+
+  .header_index.open
+    .search-form_index
+      .search-form__input
+        width: 425px
+
+
+
+
+
+
+
+

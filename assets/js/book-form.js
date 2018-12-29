@@ -1,0 +1,1 @@
+"use strict";$(function(){$("#bookForm").submit(function(t){var e={};$(this).find("select").each(function(){e[$(this)[0].name]=$(this).val()}),$.ajax({type:"POST",url:"form.php",data:e}).done(function(t){var e=jQuery.parseJSON(t);console.log(e)}),t.preventDefault()})});

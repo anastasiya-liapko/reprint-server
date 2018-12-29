@@ -1,0 +1,189 @@
+.order__form
+  width: 100%
+  height: auto
+
+.order__item,
+.order__delivery,
+.order__general
+  width: 100%
+
+.order__contacts>div
+  width: 49%
+
+.order__contacts
+  .input
+    width: 100%
+
+.order__border-bottom
+  border-bottom: 1px solid #3b3b3b
+
+.order__button
+  width: 283px
+  height: 53px
+  button
+   width: 100%
+   height: 100%
+
+.order__comment
+  width: 100% !important
+  .input
+    height: 75px
+
+.order__item-price
+  white-space: nowrap
+
+.order__item-price_fix-width
+  width: 70px
+
+.order__delivery-price_fix-width,
+.order__general-price_fix-width
+  width: 195px
+
+.order__item-del
+  width: 20px
+  height: 30px
+  &:hover 
+    cursor: pointer
+    transform: scale(1.13)
+    transition: transform 0.1s
+  &:active
+    transform: scale(1)
+    transition: transform 0.1s
+
+
+.order__item
+  .jq-selectbox
+    height: auto
+  .input
+    width: 67px
+    height: 32px
+  .select
+    width: 22%
+
+.order__item-descr
+  width: 100%
+
+.order__item-addition
+  line-height: 32px !important
+
+.order__item-general-price
+  flex-grow: 1
+
+.order__item-name
+  font-family: $font-brokgauz
+  font-size: 24px
+  font-weight: $regular
+  font-style: normal
+  font-stretch: normal
+  line-height: normal
+  letter-spacing: normal
+  text-align: left
+  color: #000000
+
+.order__item-author,
+.order__item-addition
+  font-family: $font-roboto
+  font-size: 14px
+  font-weight: $regular
+  font-style: normal
+  font-stretch: normal
+  line-height: normal
+  letter-spacing: normal
+  text-align: left
+  color: #000000
+
+.order__item-price,
+.order__item-multiplication,
+.order__item-addition,
+.order__delivery-text,
+.order__general-text
+  font-family: $font-roboto
+  font-size: 18px
+  font-weight: $bold
+  font-style: normal
+  font-stretch: normal
+  line-height: normal
+  letter-spacing: normal
+  text-align: left
+  color: #000000
+
+.order__delivery-descr
+  line-height: 1
+
+@media(max-width: 1199px)
+
+  .order__delivery-price_fix-width,
+  .order__general-price_fix-width
+    width: 193px
+
+  .order__item
+    .select
+      width: 20%
+
+@media(max-width: 991px)
+
+  .order__item
+    .select
+      width: 30%
+
+  .order__item-descr
+    width: 70%
+
+  .order__item-general-price
+    flex-grow: 0
+    width: 185px
+    margin-left: auto
+
+  .order__delivery-price_fix-width,
+  .order__general-price_fix-width
+    width: 205px
+
+  .order__contacts
+    .order__delivery-type
+      width: 100%
+    .order__delivery-descr
+      width: 100%
+    
+
+@media(max-width: 767px)
+
+  .order__item-price_fix-width
+    width: auto
+
+  .order__delivery-price_fix-width,
+  .order__general-price_fix-width
+    width: auto
+
+  .order__item-del
+    width: 30%
+
+  .order__item-descr
+    width: 70%
+
+  .order__item
+    .select
+      width: 100%
+
+  .order__item-general-price
+    width: 150px
+
+  .order__contacts
+    .order__recipient,
+    .order__address,
+    .order__phone,
+    .order__email
+      width: 100%
+
+  .order__button
+    width: 100%
+
+
+
+
+
+
+
+
+
+
+

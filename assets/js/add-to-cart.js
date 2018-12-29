@@ -1,0 +1,1 @@
+"use strict";function addToCart(t){console.log("js - addToCart()"),$.ajax({type:"POST",async:!1,url:"/?controller=cart&action=addtocart$id="+t,dataType:"json",success:function(t){console.log("data: "+t),t.success&&$("#cartCntItems").html(t.cntItems)},error:function(t,o,c){console.log(t.responseText)}})}

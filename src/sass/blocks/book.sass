@@ -1,0 +1,71 @@
+.book
+  width: 100%
+  margin-top: 10px
+  padding: 18px 20px 36px 20px
+  border: 1px solid #7d7d7d
+  &:hover 
+    text-decoration: none
+    transform: scale(1.04)
+    transition: transform 0.3s
+  &:active
+    transform: scale(1)
+    transition: transform 0.3s
+
+.book__img
+  width: 142px
+  height: 224px
+  filter: grayscale(100%)
+  img
+    box-shadow: 0.7px 0.7px 8.3px 2.8px rgba(0, 0, 0, 0.2)
+
+.book__descr
+  span
+    font-family: $font-roboto
+    font-size: 18px
+    font-weight: $regular
+    font-style: normal
+    font-stretch: normal
+    line-height: normal
+    letter-spacing: normal
+    text-align: center
+    color: #000000
+
+.book__mark
+  top: 0
+  right: 0
+  width: 72px
+  height: 34px
+  z-index: 10
+
+
+@media(min-width: 768px)
+  
+  .book
+    width: 340px
+    margin-right: 10px
+    &:nth-child(2n)
+      margin-right: 0
+
+@media(min-width: 992px)
+
+  .book
+    width: 303px
+    margin-right: 10px
+    &:nth-child(2n)
+      margin-right: 10px
+    &:nth-child(3n)
+      margin-right: 0
+
+@media(min-width: 1200px)
+
+  .book
+    width: 265px
+    margin-right: 10px
+    &:nth-child(3n)
+      margin-right: 10px
+    &:nth-child(4n)
+      margin-right: 0
+
+
+
+

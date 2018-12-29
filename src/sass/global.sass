@@ -1,0 +1,32 @@
+html
+  height: 100%
+
+body
+  display: flex
+  flex-direction: column
+  min-width: 320px
+  max-width: 1800px
+  min-height: 100%
+  margin: 0 auto
+  img
+    width: 100%
+    height: auto
+  button
+    border: none
+    &:focus
+      outline: none
+  input,
+  textarea
+    &:focus
+      outline: none
+  a:not([href]):hover
+    cursor: default
+
+
+.container
+  height: 100%
+
+@media(min-width: 1200px)
+
+  .container
+    max-width: 1120px
