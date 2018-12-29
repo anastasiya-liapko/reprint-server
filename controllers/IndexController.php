@@ -24,10 +24,13 @@ function indexAction($smarty) {
     $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
     $current_url =  $pro."://".$_SERVER['SERVER_NAME'].$port.$_SERVER['REQUEST_URI'];
     $explode_url_1 = explode('?controller=', $current_url);
-    $explode_url_2 = explode('&', $explode_url_1[1]);
-    $currentUrl = $explode_url_2[0];
-    
-    
+    if ($explode_url_1[1] === NULL) {
+        $currentUrl = 'index';
+    } else {
+        $explode_url_2 = explode('&', $explode_url_1[1]);
+        $currentUrl = $explode_url_2[0];
+    }
+    // d($currentUrl);
     $rsCategories = getAllMainCats();
 
     $smarty->assign('pageTitle', 'Reprint');

@@ -19,7 +19,7 @@
 
   <body>
 
-    <header class="header {if isset($currentUrl) && $currentUrl === 'index'}header_index{else}header_page{/if}">
+    <header class="header {if isset($currentUrl) && $currentUrl === 'index' } header_index {else} header_page {/if}">
       <div class="container d-flex flex-wrap flex-lg-nowrap justify-content-sm-between align-items-center p-0 p-lg-3">
         <div class="header__logo logo order-1 flex-grow-0 flex-shrink-0 p-3 p-lg-0">
           <a href="?controller=index&action=index">
@@ -40,13 +40,13 @@
         </div>
         <!-- title -->
 
-        <div class="header__search search order-4 order-md-3 order-lg-4 flex-grow-1 flex-sm-grow-0 text-center p-3 p-lg-0">
-          <form action="/?controller=cart&action=index" class="search-form search-form_index position-relative {if isset($currentUrl) && $currentUrl === 'index'}d-none{else}{/if}">
+        <div class="header__search search {if isset($currentUrl) && $currentUrl === 'index'} order-4 order-md-3 order-lg-4 {else} order-5 {/if} flex-grow-1 flex-sm-grow-0 text-center p-3 p-lg-0">
+          <form action="/?controller=cart&action=index" class="search-form search-form_index position-relative {if isset($currentUrl) && $currentUrl === 'index'} d-none {else} {/if}">
             <input type="text" class="search-form__input flex-grow-1" placeholder="Поиск товаров в каталоге">
             <a href="/?controller=category&id=5" obClick="return false;" class="d-block link link_dark button button_border">ПОИСК</a>
-            <span class="search-form__close position-absolute {if isset($currentUrl) && $currentUrl === 'index'}{else}d-none{/if}">x</span>
+            <span class="search-form__close position-absolute {if isset($currentUrl) && $currentUrl === 'index'} {else} d-none {/if}">x</span>
           </form>
-          <button type="submit" class="search-form__open link link_dark button {if isset($currentUrl) && $currentUrl === 'index'}{else}d-none{/if}">ПОИСК</button>
+          <button type="submit" class="search-form__open link link_dark button {if isset($currentUrl) && $currentUrl === 'index'} {else} d-none {/if}">ПОИСК</button>
         </div>
         <!-- search -->
 
@@ -55,7 +55,6 @@
             <img src="assets/img/buy.png" alt="">
           </div>
           <div class="d-flex flex-column">
-            <!-- <span id="cartCntItems" class="basket__quantity">{if isset($cartCntItems) && ($cartCntItems > 0)}{$cartCntItems} экз.{else}пусто{/if}</span> -->
             <span id="cartCntItems" class="basket__quantity">3 экз.</span>
             <span class="basket__sum">1 150 руб.</span>
           </div>
