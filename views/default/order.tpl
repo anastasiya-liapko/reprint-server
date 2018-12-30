@@ -27,7 +27,7 @@
 
                   <div class="select select__paper order-6 order-md-5 d-flex mb-3 mb-lg-0">
                     <span class="order__item-addition sign sign__addition ml-2 mr-2">+</span>
-                    <select name="item1-paper" id="item1-paper">
+                    <select name="item-paper_{$smarty.section.product.index}" id="item-paper_{$smarty.section.product.index}"  data-placeholder="Глянцевая">
                       <option class="text-center" value="Глянцевая">Глянцевая</option>
                       <option class="text-center" value="Матовая">Матовая</option>
                     </select>
@@ -35,7 +35,7 @@
 
                   <div class="select select__cover order-7 order-md-6 d-flex mb-3 mb-lg-0">
                     <span class="order__item-addition sign sign__addition ml-2 mr-2">+</span>
-                    <select name="item1-cover" id="item1-cover">
+                    <select name="item-cover_{$smarty.section.product.index}" id="item-cover_{$smarty.section.product.index}" data-placeholder="Твердый">
                       <option class="text-center" value="Твердый">Твердый</option>
                       <option class="text-center" value="Мягкий">Мягкий</option>
                     </select>
@@ -43,7 +43,7 @@
 
                   <div class="select select__format order-8 order-md-7 d-flex mb-3 mb-lg-0">
                     <span class="order__item-addition sign sign__addition ml-2 mr-2">+</span>
-                    <select name="item1-format" id="item1-format">
+                    <select name="item-format_{$smarty.section.product.index}" id="item-format_{$smarty.section.product.index}" data-placeholder="А5">
                       <option class="text-center" value="А5">А5</option>
                       <option class="text-center" value="А4">А4</option>
                     </select>
@@ -94,7 +94,7 @@
               <div class="order__delivery-type">
                 <div class="select__delivery-type">
                   <label class="label d-block">Способ доставки:</label>
-                  <select name="delivery-type" id="delivery-type">
+                  <select name="delivery-type" id="delivery-type" data-placeholder="Курьер Москва">
                     <option class="text-center" value="Курьер Москва">Курьер Москва</option>
                     <option class="text-center" value="Курьер Москва">Курьер Москва</option>
                   </select>
@@ -132,7 +132,7 @@
             </div>
             <!-- order__contacts -->
 
-            <div class="d-flex flex-column flex-md-row justify-content-end align-items-center mt-3">
+            <div class="d-flex flex-column flex-md-row justify-content-end align-items-center align-items-md-start mt-3">
               <div class="recaptcha mr-md-5 mb-4 mb-md-0">
                 <div class="g-recaptcha" data-sitekey="6Le-w4QUAAAAAOcxwpWlVCXIwO4m6ZYghcQNuj4q"></div>
                 <div class="text-danger pl-2" id="recaptchaError"></div>

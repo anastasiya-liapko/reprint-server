@@ -18,4 +18,24 @@ $(function () {
       $('.header_index').removeClass('open');
     }
   });
+
+  // $('body').click(function(event) {
+  //   var target = event.target;
+  //   var val = target.className.split(' ').shift();
+
+  //   console.log(val);
+  //   if(val === 'search-form__open') {
+  //     $('.header_index').toggleClass('open');
+  //     $('.search-form_index .search-form__input').focus();
+
+  //   } else if(val === 'search-form__close') {
+  //     $('.header_index').toggleClass('open');
+
+  //   } else {
+  //     if($('.header_index').hasClass('open')) {
+  //       $('.header_index').removeClass('open');
+  //     }
+  //   }
+
+  // })
 });

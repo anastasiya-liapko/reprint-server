@@ -1,80 +1,60 @@
-.select__wrapper>div
-  width: 100%
-
-.jq-selectbox
+.nice-select
   width: 100%
   height: 38px
-  li:hover
-    background-color: #3b3b3b !important
-
-.jq-selectbox__select
-  padding-left: 18px !important
-  color: #000000 !important
-  background: #ffffff !important
-  border: 1px solid #3b3b3b !important
-  border-radius: 0 !important
-  box-shadow: none !important
-
-.jq-selectbox__select-text
+  padding-left: 0
+  padding-right: 38px
   font-family: $font-roboto
   font-size: 14px
-  font-weight: $regular
+  line-height: 38px
+  font-weight: normal
   font-style: normal
   font-stretch: normal
   letter-spacing: normal
-  text-align: left
   color: #000000
-
-.jq-selectbox__trigger
-  position: relative
-  width: 38px
-  height: 38px
-  color: #ffffff
   background-color: #333333
+  border: solid 1px #3b3b3b
+  border-radius: 0
+  &::after
+    right: 16px
+    border-bottom: 1px solid #fff
+    border-right: 1px solid #fff
   &:hover
+    border-color: #dbdbdb
     background-color: #ffffff
-    border-left: 1px solid #3b3b3b
-  &:hover .jq-selectbox__trigger-arrow::before,
-  &:hover .jq-selectbox__trigger-arrow::after
-    background-color: #333333
-  &:active
-    background-color: #333333
-    border-left: none
-  &:active .jq-selectbox__trigger-arrow::before,
-  &:active .jq-selectbox__trigger-arrow::after
-    background-color: #ffffff
-.jq-selectbox__trigger-arrow::before
-  content: ""
-  position: absolute
-  width: 2px !important
-  height: 6px !important
-  margin-top: -3px
-  margin-left: -6px
-  background-color: #ffffff
-  transform: rotate(-45deg)
-.jq-selectbox__trigger-arrow::after
-  content: ""
-  position: absolute
-  width: 2px !important
-  height: 6px !important
-  margin-top: -3px
-  margin-left: -2px
-  background-color: #ffffff
-  transform: rotate(45deg)
+  &:hover .current
+    border-color: #dbdbdb
+  &:hover::after
+    border-bottom: 1px solid #333333
+    border-right: 1px solid #333333
 
-.jq-selectbox__dropdown
-  li
-    text-align: left !important
-    border: 1px solid #3b3b3b !important
-  li.selected
-    background-color: #333333 !important
+.nice-select:active, 
+.nice-select.open, 
+.nice-select:focus
+  border-color: #3b3b3b
+
+.nice-select .current
+  display: block
+  width: 100%
+  height: 36px
+  padding-left: 18px
+  background-color: #ffffff
+    
+.nice-select .list
+  width: 100%
+  font-family: $font-roboto
+  font-size: 14px
+  line-height: 38px
+  font-weight: normal
+  font-style: normal
+  font-stretch: normal
+  letter-spacing: normal
+  color: #000000
+  background-color: #ffffff
+  border: solid 1px #3b3b3b
+  border-radius: 0
 
 @media(min-width: 768px)
 
-  .select__wrapper>div
-    width: 30%
-
-
-
-
+  .select
+    width: 31%
 

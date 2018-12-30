@@ -1,6 +1,40 @@
 .search-form
   display: flex
   background-color: #949494
+  -webkit-transition: all 0.2s ease
+  transition: all 0.2s ease
+  &:hover
+    box-shadow: 0 0 0 2px #949494
+  &:hover .search-form__button-wrapper
+    border-color: #333333
+  &:hover .search-form__button:active
+    transform: scale(1)
+
+.search-form__button-wrapper
+  width: 117px
+  height: 43px
+  border: 2px solid #949494
+  background-color: #333
+  -webkit-transition: all 0.2s ease
+  transition: all 0.2s ease
+  &:hover,
+  &:active
+    border-color: #333333
+    cursor: pointer
+  &:hover .search-form__button
+    transform: scale(1.1)
+  &:active .search-form__button
+    transform: scale(1)
+  &:hover+.search-form__close
+    top: -19px
+    right: -15px
+  
+.search-form__button
+  width: auto
+  -webkit-transition: all 0.2s ease
+  transition: all 0.2s ease
+  &:hover
+    transform: scale(1.1)
 
 .search-form__input
   width: 100%
@@ -26,6 +60,19 @@
     letter-spacing: normal
     text-align: left
     color: #272727
+  &:focus
+    box-shadow: 0 0 0 2px #949494
+  &:hover+.search-form__button-wrapper,
+  &:focus+.search-form__button-wrapper
+    border-color: #333333
+    box-shadow: 0 0 0 2px #949494
+  &:hover+.search-form__button-wrapper>.search-form__button,
+  &:focus+.search-form__button-wrapper>.search-form__button
+    transform: scale(1.1)
+  &:hover+.search-form__button-wrapper+.search-form__close,
+  &:focus+.search-form__button-wrapper+.search-form__close
+    top: -19px
+    right: -15px
 
 .search-form__close
   top: -17px
@@ -36,7 +83,11 @@
   line-height: 1.1
   border: 2px solid #949494
   border-radius: 50%
+  -webkit-transition: all 0.2s ease
+  transition: all 0.2s ease
   &:hover
+    top: -19px
+    right: -16px
     cursor: pointer
     opacity: 0.6
   &:active

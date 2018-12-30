@@ -21,7 +21,7 @@
             <form id="bookForm" class="book-page__form d-flex flex-column">
 
               <div class="select__wrapper d-flex flex-column flex-md-row justify-content-between">
-                <div class="select__paper">
+                <div class="select select__paper">
                   <span class="info__subtitle d-block">Бумага:</span>
                   <select name="paper" id="paper">
                     <option class="text-center" value="Глянцевая">Глянцевая</option>
@@ -29,7 +29,7 @@
                   </select>
                 </div>
 
-                <div class="select__cover ml-md-3 mr-md-3">
+                <div class="select select__cover ml-md-3 mr-md-3">
                   <span class="info__subtitle d-block">Переплет:</span>
                   <select name="cover" id="cover">
                     <option class="text-center" value="Твердый">Твердый</option>
@@ -37,7 +37,7 @@
                   </select>
                 </div>
 
-                <div class="select__format">
+                <div class="select select__format">
                   <span class="info__subtitle d-block">Формат:</span>
                   <select name="format" id="format">
                     <option class="text-center" value="А5">А5</option>

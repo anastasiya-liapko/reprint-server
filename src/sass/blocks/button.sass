@@ -3,21 +3,20 @@
   background-color: $dark-grey
   cursor: pointer
 
-.button_border
-  padding: 6px 30px
-  border: 2px solid #949494
+.button_uppercase
+  text-transform: uppercase
 
 .button_square
   padding-top: 10px
   padding-bottom: 10px
   padding-left: 30px
   padding-right: 30px
+  -webkit-transition: all 0.2s ease
+  transition: all 0.2s ease
   &:hover
     color: #333333
     background-color: #ffffff
     border: 1px solid #333333
-    transition: color 5s
-    transition: border 0.5s
   &:active
     color: #ffffff
     background-color: #333333

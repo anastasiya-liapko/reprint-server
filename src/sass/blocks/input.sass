@@ -12,6 +12,8 @@
   color: #000000
   background-color: #ffffff
   border: 1px solid #3b3b3b
+  -webkit-transition: all 0.2s ease-in-out
+  transition: all 0.2s ease-in-out
   &::placeholder
     font-family: $font-roboto
     font-size: 14px
@@ -22,7 +24,22 @@
     letter-spacing: normal
     text-align: left
     color: #000000
-
+  &::-moz-placeholder
+    font-family: $font-roboto
+    font-size: 14px
+    font-weight: $regular
+    font-style: normal
+    font-stretch: normal
+    line-height: 38px
+    letter-spacing: normal
+    text-align: left
+    color: #000000
+    opacity: 1
+  &:hover
+    border-color: #dbdbdb
+  &:active,
+  &:focus
+    border-color: #3b3b3b
 
 .input_textarea
   width: 100%

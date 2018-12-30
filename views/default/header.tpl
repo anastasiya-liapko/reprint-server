@@ -10,11 +10,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+
     <link rel="stylesheet" href="assets/css/fonts.css">
     <link rel="stylesheet" href="assets/css/style.min.css">
-
-    <link href="assets/css/jquery.formstyler.css" rel="stylesheet" />
-    <link href="assets/css/jquery.formstyler.theme.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -43,14 +42,16 @@
         <div class="header__search search {if isset($currentUrl) && $currentUrl === 'index'} order-4 order-md-3 order-lg-4 {else} order-5 {/if} flex-grow-1 flex-sm-grow-0 text-center p-3 p-lg-0">
           <form action="/?controller=cart&action=index" class="search-form search-form_index position-relative {if isset($currentUrl) && $currentUrl === 'index'} d-none {else} {/if}">
             <input type="text" class="search-form__input flex-grow-1" placeholder="Поиск товаров в каталоге">
-            <a href="/?controller=category&id=5" obClick="return false;" class="d-block link link_dark button button_border">ПОИСК</a>
+            <div class="search-form__button-wrapper d-flex justify-content-center align-items-center">
+              <a href="/?controller=category&id=5" class="search-form__button button button_uppercase">ПОИСК</a>
+            </div>
             <span class="search-form__close position-absolute {if isset($currentUrl) && $currentUrl === 'index'} {else} d-none {/if}">x</span>
           </form>
           <button type="submit" class="search-form__open link link_dark button {if isset($currentUrl) && $currentUrl === 'index'} {else} d-none {/if}">ПОИСК</button>
         </div>
         <!-- search -->
 
-        <a href="/?controller=cart&action=index" class="header__basket basket d-flex justify-content-end align-items-center order-2 order-md-4 order-lg-5 flex-grow-1 flex-md-grow-0 p-3 p-lg-0">
+        <a href="/?controller=cart&action=index" class="header__basket basket d-flex justify-content-end align-items-center order-2  {if isset($currentUrl) && $currentUrl === 'index'} {else} order-sm-4 {/if} order-md-4 order-lg-5 flex-grow-1 flex-md-grow-0 p-3 p-lg-0">
           <div class="basket__image mr-2 mr-lg-4">
             <img src="assets/img/buy.png" alt="">
           </div>
