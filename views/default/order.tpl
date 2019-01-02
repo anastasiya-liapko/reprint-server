@@ -28,23 +28,30 @@
                   <div class="select select__paper order-6 order-md-5 d-flex mb-3 mb-lg-0">
                     <span class="order__item-addition sign sign__addition ml-2 mr-2">+</span>
                     <select name="item-paper_{$smarty.section.product.index}" id="item-paper_{$smarty.section.product.index}"  data-placeholder="Глянцевая">
-                      <option class="text-center" value="Глянцевая">Глянцевая</option>
-                      <option class="text-center" value="Матовая">Матовая</option>
+                      <option class="text-center" value="Глянцевая">Белая 80 г/м</option>
+                      <option class="text-center" value="Матовая">Слоновая кость 80 г/м</option>
+                      <option class="text-center" value="Матовая">Белая 160 г/м</option>
+                      <option class="text-center" value="Матовая">Слоновая кость 120 г/м</option>
+                      <option class="text-center" value="Матовая">Слоновая кость 160 г/м</option>
+                      <option class="text-center" value="Матовая">Верже</option>
                     </select>
                   </div>
 
                   <div class="select select__cover order-7 order-md-6 d-flex mb-3 mb-lg-0">
                     <span class="order__item-addition sign sign__addition ml-2 mr-2">+</span>
                     <select name="item-cover_{$smarty.section.product.index}" id="item-cover_{$smarty.section.product.index}" data-placeholder="Твердый">
-                      <option class="text-center" value="Твердый">Твердый</option>
-                      <option class="text-center" value="Мягкий">Мягкий</option>
+                      <option class="text-center" value="Твердый">Листы в подборе (под переплёт)</option>
+                      <option class="text-center" value="Мягкий">Мягкий переплет (КБС)</option>
+                      <option class="text-center" value="Мягкий">Полукожаный переплёт</option>
+                      <option class="text-center" value="Мягкий">Цельнокожаный переплёт</option>
                     </select>
                   </div>
 
                   <div class="select select__format order-8 order-md-7 d-flex mb-3 mb-lg-0">
                     <span class="order__item-addition sign sign__addition ml-2 mr-2">+</span>
                     <select name="item-format_{$smarty.section.product.index}" id="item-format_{$smarty.section.product.index}" data-placeholder="А5">
-                      <option class="text-center" value="А5">А5</option>
+                      <option class="text-center" value="А5">Оригинал</option>
+                      <option class="text-center" value="А4">17х24</option>
                       <option class="text-center" value="А4">А4</option>
                     </select>
                   </div>
