@@ -4,6 +4,7 @@ $(function () {
   var ESC_KEYCODE = 27;
 
   $('.search-form__open').click(function() {
+    console.log('open');
     $('.header_index').toggleClass('open');
 
     $('.search-form_index .search-form__input').focus();
@@ -25,10 +26,12 @@ $(function () {
 
   //   console.log(val);
   //   if(val === 'search-form__open') {
+  //     console.log('addClass open');
   //     $('.header_index').toggleClass('open');
   //     $('.search-form_index .search-form__input').focus();
 
   //   } else if(val === 'search-form__close') {
+  //     console.log('addClass open');
   //     $('.header_index').toggleClass('open');
 
   //   } else {

@@ -25,7 +25,7 @@
   <script src="assets/js/pagination.js"></script>
   <script src="assets/js/sort.js"></script>
   <script src="assets/js/book-form.js"></script>
-  <!-- <script src="assets/js/search-form.js"></script> -->
+  <script src="assets/js/search-form.js"></script>
   <script src="assets/js/add-to-cart.js"></script>
   <script src="assets/js/select.js"></script>
 

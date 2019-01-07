@@ -40,6 +40,7 @@
         <!-- title -->
 
         <div class="header__search search {if isset($currentUrl) && $currentUrl === 'index'} order-4 order-md-3 order-lg-4 {else} order-5 {/if} flex-grow-1 flex-sm-grow-0 text-center p-3 p-lg-0">
+
           <form action="/?controller=cart&action=index" class="search-form search-form_index position-relative {if isset($currentUrl) && $currentUrl === 'index'} d-none {else} {/if}">
             <input type="text" class="search-form__input flex-grow-1" placeholder="Поиск товаров в каталоге">
             <div class="search-form__button-wrapper d-flex justify-content-center align-items-center">
@@ -47,7 +48,9 @@
             </div>
             <span class="search-form__close position-absolute {if isset($currentUrl) && $currentUrl === 'index'} {else} d-none {/if}">x</span>
           </form>
+
           <button type="submit" class="search-form__open link link_dark button {if isset($currentUrl) && $currentUrl === 'index'} {else} d-none {/if}">ПОИСК</button>
+          
         </div>
         <!-- search -->
 
