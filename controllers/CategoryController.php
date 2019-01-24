@@ -4,40 +4,86 @@
  * CategoryController.php
  * 
  * контроллер страницы категории
- */
+*/
 
-// Подключаем модули
-include_once 'models/CategoriesModel.php';
-include_once 'models/ProductsModel.php';
+class CategoryController extends ControllerComponent
+{
 
-/**
- * Формирование страницы категории
- * 
- * @param object $smarty шаблонизатор
- */
-function indexAction($smarty) {
-    $catId = isset($_GET['id']) ? $_GET['id'] : NULL;
+
+  /**
+   * Формирование страницы категории
+  */
+  public function indexAction()
+  {
+    $catIdDefault = 1; //категория по умолчанию
+    $itemInPage = 12; //книг на странице
+
+    $catId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT, ['options' => ['min_range'=> 1, 'default' => $catIdDefault ]]);
+    $page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT, ['options' => ['min_range'=> 1, 'default' => 1 ]]);
+    $asc = filter_input(INPUT_GET, 'asc', FILTER_VALIDATE_REGEXP, ['options' => ['default' => 'asc', 'regexp' => '/^(asc|desc)$/']]);
+    $order = filter_input(INPUT_GET, 'order', FILTER_VALIDATE_REGEXP, ['options' => ['default' => 'id', 'regexp' => '/^(id|name|author|prices)$/']]);
+    $search = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING, ['flags' => FILTER_FLAG_STRIP_LOW]);   
     
-    $rsProducts = NULL;
+    $link = ['controller' => 'category', 'asc' => $asc, 'order' => $order];
+   
+    $categoriesModel = new CategoriesModel;
+    $rsCategories = $categoriesModel->getList();
 
-    $rsCategories = getAllMainCats();
-    $rsProducts = getProductsByCat($catId);
-
-    $smarty->assign('pageTitle', 'Reprint');
-    $smarty->assign('catId', $catId);
-    $smarty->assign('rsCategories', $rsCategories);
-    $smarty->assign('rsProducts', $rsProducts);
-
-    loadTemplate($smarty, 'header');
-    if ($catId == 1) {
-      loadTemplate($smarty, 'razdel');
-    } else if ($catId == 3) {
-      loadTemplate($smarty, 'services');
-    } else if ($catId == 4) {
-      loadTemplate($smarty, 'contacts');
-    } else if ($catId == 5) {
-      loadTemplate($smarty, 'search');
+    $where = [
+      'AND',
+      ['field' => 'is_showed', 'value' => 1, 'type' => '='],      
+    ];
+         
+    if($search) {
+      $search = str_replace(['%','_'], ' ', $search);
+      $search = trim(preg_replace('|\s+|', ' ', $search));
+      if(mb_strlen($search, 'UTF-8') > 2) {
+        $search2 = '%'. str_replace(' ', '%', $search) . '%';
+        $where[] = ['field' => 'name', 'value' => $search2, 'type' => 'LIKE'];
+        $link['search'] = $search;
+      } else {
+        $search = false;
+      }
     }
-    loadTemplate($smarty, 'footer');
+
+    if(!$search) {
+      $where[] = ['field' => 'section_id', 'value' => $catId, 'type' => '='];
+    }
+
+    $orderBy = [$order => $asc];
+    $limit = [(($page - 1) * $itemInPage), $itemInPage];
+    $select = ['id', 'name', 'author', 'section_id', 'price', 'dsc'];
+
+    $productModel = new ProductsModel;
+    $rsProducts = $productModel->getList($where, $select, $orderBy, $limit, true);
+    $count = $productModel->getCount();    
+
+    $imagesModel = new ImagesModel;
+    $imagesModel->addListImage($rsProducts);
+
+    //myLog($rsProducts, '$rsProducts');
+    
+    if($page > 1) {
+      $link['page'] = $page;
+    }
+
+    $this->smarty->assign('pageTitle', 'Reprint');
+    $this->smarty->assign('catId', $catId);
+    $this->smarty->assign('rsCategories', $rsCategories);
+    $this->smarty->assign('rsProducts', $rsProducts);
+    $this->smarty->assign('page', $page);
+    $this->smarty->assign('asc', $asc);
+    $this->smarty->assign('asc2', (($asc == 'asc') ? 'desc' : 'asc'));
+    $this->smarty->assign('order', $order);
+    $this->smarty->assign('count', $count);
+    $this->smarty->assign('link', $link);
+    $this->smarty->assign('itemInPage', $itemInPage);
+    $this->smarty->assign('search', $search);
+
+    $this->loadTemplate('header');
+    $this->loadTemplate('razdel');
+    $this->loadTemplate('footer');
+  }
+
 }
 

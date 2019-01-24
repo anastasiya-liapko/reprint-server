@@ -1,4 +1,3 @@
-
     <main class="main main_index">
       <div class="container">
         <div class="page">

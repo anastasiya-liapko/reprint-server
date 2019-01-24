@@ -2,42 +2,69 @@
 
 /**
  * Контроллер главной страницы
- */
+*/
 
-// Подключаем модели
-include_once 'models/CategoriesModel.php';
-include_once 'models/ProductsModel.php';
+class IndexController extends ControllerComponent
+{
+    /**
+     * Формирование главной страницы сайта 
+    */
 
-/**
- * Формирование главной страницы сайта
- * 
- * @param object $smarty шаблонизатор
- */
-function indexAction($smarty) {
+    public function indexAction() 
+    {
 
-    // получаем url текущей страницы
-    if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {
-        $pro = 'https';
-    } else {
-        $pro = 'http';
+        $currentUrl = 'index'; 
+        
+        $this->smarty->assign('pageTitle', 'Reprint');
+        $this->smarty->assign("currentUrl", $currentUrl); //мне кажется это лишние, то для чего получают этот параметр надо реализовывать по другому 
+
+        $this->loadTemplate('header');
+        $this->loadTemplate('index');
+        $this->loadTemplate('footer'); 
+        
     }
-    $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
-    $current_url =  $pro."://".$_SERVER['SERVER_NAME'].$port.$_SERVER['REQUEST_URI'];
-    $explode_url_1 = explode('?controller=', $current_url);
-    if ($explode_url_1[1] === NULL) {
-        $currentUrl = 'index';
-    } else {
-        $explode_url_2 = explode('&', $explode_url_1[1]);
-        $currentUrl = $explode_url_2[0];
+
+
+    public function orderAction() 
+    {
+        
+        $this->smarty->assign('pageTitle', 'Reprint');
+        $this->smarty->assign("currentUrl", 'order'); //мне кажется это лишние, то для чего получают этот параметр надо реализовывать по другому 
+
+        $this->loadTemplate('header');
+        $this->loadTemplate('order');
+        $this->loadTemplate('footer'); 
+        
     }
-    
-    $rsCategories = getAllMainCats();
 
-    $smarty->assign('pageTitle', 'Reprint');
-    $smarty->assign('rsCategories', $rsCategories);
-    $smarty->assign("currentUrl",$currentUrl);
 
-    loadTemplate($smarty, 'header');
-    loadTemplate($smarty, 'index');
-    loadTemplate($smarty, 'footer');
+
+    public function servicesAction() 
+    {
+        
+        $this->smarty->assign('pageTitle', 'Reprint');
+        $this->smarty->assign("currentUrl", 'services'); //мне кажется это лишние, то для чего получают этот параметр надо реализовывать по другому 
+
+        $this->loadTemplate('header');
+        $this->loadTemplate('services');
+        $this->loadTemplate('footer'); 
+        
+    }
+
+
+
+    public function contactsAction() 
+    {
+        $currentUrl = 'index'; 
+        
+        $this->smarty->assign('pageTitle', 'Reprint');
+        $this->smarty->assign("currentUrl", 'contacts'); //мне кажется это лишние, то для чего получают этот параметр надо реализовывать по другому 
+
+        $this->loadTemplate('header');
+        $this->loadTemplate('contacts');
+        $this->loadTemplate('footer'); 
+        
+    }
+
+
 }

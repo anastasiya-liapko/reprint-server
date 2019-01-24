@@ -9,64 +9,69 @@
               {section name=product start=0 loop=2}
               <div class="order__item order__border-bottom pb-3 pt-3">
 
-                <div class="d-flex flex-wrap align-items-center justify-content-between pr-lg-4 mt-3">
+                <div class="d-flex flex-wrap align-items-center justify-content-between mt-3">
 
                   <div class="order__item-descr order-1 flex-md-grow-1 mb-lg-3">
                     <span class="order__item-name d-block">Маша и Медведь</span>
                     <span class="order__item-author d-block">Автор И.О.</span>
                   </div>
-
-                  <div class="order__item-price order__item-price_fix-width mt-3 mt-lg-0 mb-3 mb-lg-0 order-3 order-md-2">
+                  
+                  <div class="order__item-wrapper d-flex flex-wrap flex-xl-nowrap align-items-center order-2 w-100">
+                  <div class="order__item-price order__item-price_fix-width mt-3 mt-lg-0 mb-3 mb-lg-0 order-4 order-lg-2">
                     <span class="number">350</span>
                     <span class="currency">руб.</span>
                   </div>
 
-                  <span class="order__item-multiplication sign sign__multiplication mt-3 mt-lg-0 mb-3 mb-lg-0 ml-4 mr-4 order-4 order-md-3">x</span>
+                  <span class="order__item-multiplication sign sign__multiplication mt-3 mt-lg-0 mb-3 mb-lg-0 ml-4 mr-4 order-5 order-lg-3">x</span>
 
-                  <input type="text" id="item1-quantity" name="item1-quantity" class="input order-5 order-md-4 mt-3 mt-lg-0 mb-3 mb-lg-0" id="order__item-quantity" placeholder="2">
+                  <input type="text" id="item1-quantity" name="item1-quantity" class="input order-6 order-lg-4 mt-3 mt-lg-0 mb-3 mb-lg-0" id="order__item-quantity" placeholder="2">
 
-                  <div class="select select__paper order-6 order-md-5 d-flex mb-3 mb-lg-0">
-                    <span class="order__item-addition sign sign__addition ml-2 mr-2">+</span>
-                    <select name="item-paper_{$smarty.section.product.index}" id="item-paper_{$smarty.section.product.index}"  data-placeholder="Глянцевая">
-                      <option class="text-center" value="Глянцевая">Белая 80 г/м</option>
-                      <option class="text-center" value="Матовая">Слоновая кость 80 г/м</option>
-                      <option class="text-center" value="Матовая">Белая 160 г/м</option>
-                      <option class="text-center" value="Матовая">Слоновая кость 120 г/м</option>
-                      <option class="text-center" value="Матовая">Слоновая кость 160 г/м</option>
-                      <option class="text-center" value="Матовая">Верже</option>
-                    </select>
+                  <div class="order__item-select d-flex flex-column flex-md-row flex-grow-1 order-3 order-lg-5">
+                    <div class="select select__paper d-flex mb-3 mt-3 mt-md-0 mb-lg-0">
+                      <span class="order__item-addition sign sign__addition ml-2 mr-2">+</span>
+                      <select name="item-paper_{$smarty.section.product.index}" id="item-paper_{$smarty.section.product.index}"  data-placeholder="Глянцевая">
+                        <option class="text-center" value="Глянцевая">Белая 80 г/м</option>
+                        <option class="text-center" value="Матовая">Слоновая кость 80 г/м</option>
+                        <option class="text-center" value="Матовая">Белая 160 г/м</option>
+                        <option class="text-center" value="Матовая">Слоновая кость 120 г/м</option>
+                        <option class="text-center" value="Матовая">Слоновая кость 160 г/м</option>
+                        <option class="text-center" value="Матовая">Верже</option>
+                      </select>
+                    </div>
+
+                    <div class="select select__cover flex-grow-1 order-7 order-lg-6 d-flex mb-3 mb-lg-0">
+                      <span class="order__item-addition sign sign__addition ml-2 mr-2">+</span>
+                      <select name="item-cover_{$smarty.section.product.index}" id="item-cover_{$smarty.section.product.index}" data-placeholder="Твердый">
+                        <option class="text-center" value="Твердый">Листы в подборе (под переплёт)</option>
+                        <option class="text-center" value="Мягкий">Мягкий переплет (КБС)</option>
+                        <option class="text-center" value="Мягкий">Полукожаный переплёт</option>
+                        <option class="text-center" value="Мягкий">Цельнокожаный переплёт</option>
+                      </select>
+                    </div>
+
+                    <div class="select select__format order-8 order-lg-7 d-flex mb-md-3 mb-lg-0">
+                      <span class="order__item-addition sign sign__addition ml-2 mr-2">+</span>
+                      <select name="item-format_{$smarty.section.product.index}" id="item-format_{$smarty.section.product.index}" data-placeholder="А5">
+                        <option class="text-center" value="А5">Оригинал</option>
+                        <option class="text-center" value="А4">17х24</option>
+                        <option class="text-center" value="А4">А4</option>
+                      </select>
+                    </div>
                   </div>
 
-                  <div class="select select__cover order-7 order-md-6 d-flex mb-3 mb-lg-0">
-                    <span class="order__item-addition sign sign__addition ml-2 mr-2">+</span>
-                    <select name="item-cover_{$smarty.section.product.index}" id="item-cover_{$smarty.section.product.index}" data-placeholder="Твердый">
-                      <option class="text-center" value="Твердый">Листы в подборе (под переплёт)</option>
-                      <option class="text-center" value="Мягкий">Мягкий переплет (КБС)</option>
-                      <option class="text-center" value="Мягкий">Полукожаный переплёт</option>
-                      <option class="text-center" value="Мягкий">Цельнокожаный переплёт</option>
-                    </select>
-                  </div>
-
-                  <div class="select select__format order-8 order-md-7 d-flex mb-3 mb-lg-0">
-                    <span class="order__item-addition sign sign__addition ml-2 mr-2">+</span>
-                    <select name="item-format_{$smarty.section.product.index}" id="item-format_{$smarty.section.product.index}" data-placeholder="А5">
-                      <option class="text-center" value="А5">Оригинал</option>
-                      <option class="text-center" value="А4">17х24</option>
-                      <option class="text-center" value="А4">А4</option>
-                    </select>
-                  </div>
-
-                  <div class="order__item-price order__item-general-price d-flex justify-content-end justify-content-md-start order-9 order-md-8">
+                  <div class="order__item-price order__item-general-price d-flex justify-content-end justify-content-md-start order-7 order-lg-8 mt-lg-3 mt-xl-0">
                     <span class="order__item-equal sign sign__equal ml-2 mr-2">=</span>
                     <span class="number">500</span>
                     <span class="currency">руб.</span>
                   </div>
 
-                  <div class="order__item-del d-flex justify-content-end order-2 order-md-9">
+                  <div class="order__item-del d-flex justify-content-end order-2 order-lg-9 mb-3 mb-lg-0 mt-lg-3 mt-xl-0">
                     <div class="order__item-del-wrapper">
                       <span class="iconmoon icon-del"></span>
                     </div>
                   </div>
+                  </div>
+
                 </div>
 
               </div>

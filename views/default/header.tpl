@@ -21,14 +21,25 @@
     <header class="header {if isset($currentUrl) && $currentUrl === 'index' } header_index {else} header_page {/if}">
       <div class="container d-flex flex-wrap flex-lg-nowrap justify-content-sm-between align-items-center p-0 p-lg-3">
         <div class="header__logo logo order-1 flex-grow-0 flex-shrink-0 p-3 p-lg-0">
-          <a href="?controller=index&action=index">
+          <a href="/">
             <img src="assets/img/logo.png" alt="">
           </a>
         </div>
         <!-- logo -->
 
         <div class="header__menu menu order-3 order-md-2 order-lg-2 flex-grow-1 flex-sm-grow-0 text-center p-3 p-lg-0">
-          <a class="link link_dark" href="/?controller=category&id=1">КАТАЛОГ</a>
+          <!-- <a class="link link_dark" href="/index.php?controller=category&id=1">КАТАЛОГ</a> -->
+
+          <div class="dropdown">
+            <button class="link link_dark link_dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              КАТАЛОГ
+            </button>
+            <div class="dropdown-menu" id="dropdownMenu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="/index.php?controller=category&id=1">История</a>
+              <a class="dropdown-item" href="/index.php?controller=category&id=1">Фантастика</a>
+            </div>
+          </div>
+
         </div>
         <!-- menu -->
 
@@ -41,10 +52,11 @@
 
         <div class="header__search search {if isset($currentUrl) && $currentUrl === 'index'} order-4 order-md-3 order-lg-4 {else} order-5 {/if} flex-grow-1 flex-sm-grow-0 text-center p-3 p-lg-0">
 
-          <form action="/?controller=cart&action=index" class="search-form search-form_index position-relative {if isset($currentUrl) && $currentUrl === 'index'} d-none {else} {/if}">
-            <input type="text" class="search-form__input flex-grow-1" placeholder="Поиск товаров в каталоге">
-            <div class="search-form__button-wrapper d-flex justify-content-center align-items-center">
-              <a href="/?controller=category&id=5" class="search-form__button button button_uppercase">ПОИСК</a>
+          <form action="/index.php?controller=category&id=1" class="search-form search-form_index position-relative {if isset($currentUrl) && $currentUrl === 'index'} d-none {else} {/if}">
+            <input type="hidden" value="category" name="controller">
+            <input type="text" name="search" value="{if isset($search)}{$search}{/if}" class="search-form__input flex-grow-1" placeholder="Поиск товаров в каталоге">
+            <div class="search-form__button-wrapper d-flex justify-content-center align-items-center">              
+              <button type="submit" class="search-form__button button button_uppercase">ПОИСК</button>
             </div>
             <span class="search-form__close position-absolute {if isset($currentUrl) && $currentUrl === 'index'} {else} d-none {/if}">x</span>
           </form>

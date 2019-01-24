@@ -1,27 +1,27 @@
 <?php
 
+
 /**
- * CartController.php
- * 
  * контроллер работы с корзиной
- */
+*/
 
-// Подключаем модули
-include_once 'models/CategoriesModel.php';
-include_once 'models/ProductsModel.php';
+class CartController extends ControllerComponent
+{
 
+    /**
+     * Формирование страницы корзины
+     * 
+    */
 
-/**
- * Формирование страницы корзины
- * 
- */
-function indexAction($smarty) {
-    $rsCategories = getAllMainCats();
+    public function indexAction() 
+    {  
 
-    $smarty->assign('pageTitle', 'Reprint');
-    $smarty->assign('rsCategories', $rsCategories);
+        $this->smarty->assign('pageTitle', 'Reprint');
+        $this->smarty->assign("currentUrl", 'cart');
 
-    loadTemplate($smarty, 'header');
-    loadTemplate($smarty, 'order');
-    loadTemplate($smarty, 'footer');
+        $this->loadTemplate('header');
+        $this->loadTemplate('order');
+        $this->loadTemplate('footer');
+    }
+
 }

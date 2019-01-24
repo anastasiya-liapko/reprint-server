@@ -1,14 +1,13 @@
 <?php
 
-include_once 'config/config.php';         // Инициализация настроек
-include_once 'library/mainFunctions.php'; // Основные функции
+define('ABS_PATH', __DIR__);
+//session_start(); 
+
+include_once  ABS_PATH .'/config/config.php';         // Инициализация настроек
+include_once  ABS_PATH .'/db.cfg.php'; 
+include_once  ABS_PATH .'/library/autoload.php'; 
 
 
-// Определяем с каким контроллером будем работать
-$controllerName = isset($_GET['controller']) ? ucfirst($_GET['controller']) : 'Index';
+new RoutedComponent; 
 
-// Определяем с какой функцией будем работать
-$actionName = isset($_GET['action']) ? $_GET['action'] : 'index';
 
-loadPage($smarty, $controllerName, $actionName);
-?>

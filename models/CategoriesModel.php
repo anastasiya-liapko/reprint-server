@@ -2,36 +2,20 @@
 
 /**
  * Модель для таблицы категорий (categories)
- */
+*/
 
-/**
- * Получить главные категории
- * 
- */
-function getAllMainCats() 
+defined('ABS_PATH') or die;
+
+class CategoriesModel extends ModelComponent
 {
 
-    $data = [
-      1 => 
-      [
-        'id' => 1,
-        'name' => 'Каталог'
-      ],
-      2 => 
-      [
-        'id' => 2,
-        'name' => 'Как сделать заказ'
-      ],
-      3 => 
-      [
-        'id' => 3,
-        'name' => 'Оплата и доставка'
-      ],
-      4 => [
-        'id' => 4,
-        'name' => 'Контакты'
-      ]
-    ];
+  public static function tableName()
+  {
+    return 'sections';
+  }
 
-    return $data;
+  
+
+  
+
 }

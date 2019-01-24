@@ -3,45 +3,46 @@
         <div class="page">
           <p class="page__title page__title_uppercase mb-sm-0">история</p>
           <div id="sort" class="page__sort sort d-flex flex-column flex-sm-row justify-content-center">
-            <span class="link link_page link_light active">сначала новинки</span>
-            <span class="link link_page link_light mr-3 ml-3">по году издания</span>
-            <span class="link link_page link_light">по алфавиту</span>   
+            <!--<span class="link link_page link_light active">сначала новинки</span>-->
+            <span class="link link_page link_light mr-3 ml-3">             
+              <a href="{ControllerComponent::link($link, ['order'=>'author','asc'=>$asc2,'page'=> 1])}" class="link link_page link_light {if $order == 'author'} active {/if}">
+                по автору
+              </a>
+            </span>
+            <span class="link link_page link_light mr-3 ml-3">
+              <a href="{ControllerComponent::link($link, ['order'=>'name','asc'=>$asc2,'page'=> 1])}" class="link link_page link_light {if $order == 'name'} active {/if}">
+                по наименованию
+              </a>
+            </span>   
           </div>
+          
           <!-- sort -->
 
           <div class="page__books books d-flex flex-wrap">
 
             <!-- add-book.js -->
-
-            <!-- <template id="product-template" class="d-none">
-              <a href="/book-page.html" class="book d-flex flex-column align-items-center position-relative">
-                <div class="book__mark position-absolute">
+            {foreach $rsProducts as $books }
+            
+             <!--<template id="product-template" class="d-none">-->
+              <a href="{ControllerComponent::link(['controller'=>'product', 'id' => $books.id])}" class="book d-flex flex-column align-items-center position-relative">
+                <!--<div class="book__mark position-absolute">
                   <img src="img/new.png" alt="new">
-                </div>
+                </div>-->
                 <div class="book__img">
-                  <img src="' + books[element]['image'] + '" alt="book" width="142" height="224">
+                  <img src="{if isset($books.image)} {$books.image} {else}/assets/img/book.jpg{/if}" alt="{$books.name}" width="142" height="224">
                 </div>
                 <div class="book__descr">
-                  <span class="author d-block"></span>
-                  <span class="name d-block"></span>
+                  <span class="author d-block">{$books.author}</span>
+                  <span class="name d-block">{$books.name}</span>
                 </div>
               </a>
-            </template> -->
-
+            <!--</template> -->
+            {/foreach}
           </div>
-          <!--books -->
+          <!--books -->     
 
-          <div class="pagination d-flex justify-content-center pt-5 pb-5">
-            <div class="pagination__wrapper d-flex justify-content-between align-items-center">
-              <a href="#" id="page-1" class="link link_page link_light active">1</a>
-              <a href="#" id="page-2" class="link link_page link_light">2</a>
-              <a href="#" id="page-3" class="link link_page link_light">3</a>
-              <a href="#" id="page-4" class="link link_page link_light">4</a>
-              <a href="#" id="page-5" class="link link_page link_light">5</a>
-              <a href="#" id="page-6" class="link link_page link_light">...</a>
-              <a href="#" id="page-7" class="link link_page link_light">137</a>
-            </div>
-          </div>
+          <div class="pagination d-flex justify-content-center pt-5 pb-5">            
+          {ControllerComponent::pagination($page, $count, $itemInPage, $link, ['cssLink'=>'link link_page link_light', 'cssActive'=>'link link_page link_light active'])}
           <!-- pagination -->
         </div>
       </div>
