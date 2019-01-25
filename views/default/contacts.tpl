@@ -1,7 +1,7 @@
     <main class="main">
       <div class="container">
         <div class="page">
-          <p class="page__title mb-sm-0">Контакты</p>
+          <h1 class="page__title mb-sm-0">Контакты</h1>
          
 
           <div class="contacts__info info pl-0 pb-5">
@@ -14,7 +14,7 @@
 
           <p class="page__title mb-sm-0">Сообщение</p>
 
-          <form id="messageForm" class="contacts__form mt-4 mb-5">
+          <form id="messageForm" class="contacts__form mt-4 mb-5" >
             <div class="d-flex flex-column flex-md-row justify-content-between">
               <div class="d-flex flex-column flex-grow-1 mr-md-5 mb-5 mb-md-0">
                 <input id="name" class="input mb-2" type="text" name="name" placeholder="Имя">

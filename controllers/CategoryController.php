@@ -20,14 +20,11 @@ class CategoryController extends ControllerComponent
 
     $catId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT, ['options' => ['min_range'=> 1, 'default' => $catIdDefault ]]);
     $page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT, ['options' => ['min_range'=> 1, 'default' => 1 ]]);
-    $asc = filter_input(INPUT_GET, 'asc', FILTER_VALIDATE_REGEXP, ['options' => ['default' => 'asc', 'regexp' => '/^(asc|desc)$/']]);
-    $order = filter_input(INPUT_GET, 'order', FILTER_VALIDATE_REGEXP, ['options' => ['default' => 'id', 'regexp' => '/^(id|name|author|prices)$/']]);
+    $asc = filter_input(INPUT_GET, 'asc', FILTER_VALIDATE_REGEXP, ['options' => ['default' => 'asc', 'regexp' => '/^(asc|desc)$/i']]);
+    $order = filter_input(INPUT_GET, 'order', FILTER_VALIDATE_REGEXP, ['options' => ['default' => 'id', 'regexp' => '/^(id|name|author|prices)$/i']]);
     $search = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING, ['flags' => FILTER_FLAG_STRIP_LOW]);   
     
     $link = ['controller' => 'category', 'asc' => $asc, 'order' => $order];
-   
-    $categoriesModel = new CategoriesModel;
-    $rsCategories = $categoriesModel->getList();
 
     $where = [
       'AND',
@@ -60,16 +57,15 @@ class CategoryController extends ControllerComponent
 
     $imagesModel = new ImagesModel;
     $imagesModel->addListImage($rsProducts);
-
-    //myLog($rsProducts, '$rsProducts');
     
     if($page > 1) {
       $link['page'] = $page;
     }
+ 
+    $categoryName = (new CategoriesModel)->getItem(['field' => 'id', 'value' => $catId, 'type' => '=']);
 
     $this->smarty->assign('pageTitle', 'Reprint');
     $this->smarty->assign('catId', $catId);
-    $this->smarty->assign('rsCategories', $rsCategories);
     $this->smarty->assign('rsProducts', $rsProducts);
     $this->smarty->assign('page', $page);
     $this->smarty->assign('asc', $asc);
@@ -79,10 +75,10 @@ class CategoryController extends ControllerComponent
     $this->smarty->assign('link', $link);
     $this->smarty->assign('itemInPage', $itemInPage);
     $this->smarty->assign('search', $search);
+    $this->smarty->assign('categoryName', $categoryName);
 
-    $this->loadTemplate('header');
+
     $this->loadTemplate('razdel');
-    $this->loadTemplate('footer');
   }
 
 }

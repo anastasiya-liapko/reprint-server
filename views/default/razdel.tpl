@@ -1,7 +1,7 @@
     <main class="main">
       <div class="container">
         <div class="page">
-          <p class="page__title page__title_uppercase mb-sm-0">история</p>
+          <h1 class="page__title page__title_uppercase mb-sm-0">{$categoryName.name}</h1>
           <div id="sort" class="page__sort sort d-flex flex-column flex-sm-row justify-content-center">
             <!--<span class="link link_page link_light active">сначала новинки</span>-->
             <span class="link link_page link_light mr-3 ml-3">             
@@ -42,7 +42,10 @@
           <!--books -->     
 
           <div class="pagination d-flex justify-content-center pt-5 pb-5">            
-          {ControllerComponent::pagination($page, $count, $itemInPage, $link, ['cssLink'=>'link link_page link_light', 'cssActive'=>'link link_page link_light active'])}
+          {ControllerComponent::pagination($page, $count, $itemInPage, $link, ['cssLink'=>'link link_page link_light', 'cssActive'=>'link link_page link_light active', 'text_first' => false,
+            'text_last' => false,
+            'text_next' => false,
+            'text_prev' => false ])}
           <!-- pagination -->
         </div>
       </div>

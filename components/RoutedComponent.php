@@ -4,41 +4,46 @@ defined('ABS_PATH') or die;
 
 class RoutedComponent 
 {    
+    private static $controller;
+    private static $action;
+
     public function __construct()
-    {
-        $params = $_GET;
+    {        
+        $controller = filter_input(INPUT_GET, 'controller', FILTER_VALIDATE_REGEXP, ['options' => ['default' => 'index', 'regexp' => '/^[a-zA-Z_][a-zA-Z0-9_]+$/']]);
+        $controller = strtolower($controller);
+        $class = ucfirst($controller). 'Controller';
 
-        $class = 'IndexController';
-        $method = 'indexAction';  
-
-        if(isset($params['controller']) ) {
-            $class0 = $this->correctName($params['controller'], 'Index') . 'Controller'; 
-
-            if(class_exists($class0, true)) {
-                $class = $class0; 
-            }          
-
-            if(isset($params['action']) ) {
-                $method0 = $this->correctName($params['action'], 'index') . 'Action';  
-                if(method_exists($class, $method0)) {
-                    $method = $method0;
-                }                
-            } 
-
+        if(!class_exists($class, true)) {
+            $class = 'IndexController'; 
         }
+
+        $action = filter_input(INPUT_GET, 'action', FILTER_VALIDATE_REGEXP, ['options' => ['default' => 'index', 'regexp' => '/^[a-zA-Z_][a-zA-Z0-9_]+$/']]);
+        $action = strtolower($action);
+        $method = $action.'Action'; 
+        if(!method_exists($class, $method)) {
+            $method = 'indexAction';
+        }
+        
+        $this->setParams($controller, $action);
 
         (new $class)->$method();  
-    }  
-
-    private function correctName($name, $default)
+    } 
+    
+    private function setParams($controller, $action)
     {
-        $name = (string)$name;
-        $name = preg_replace('|[^a-zA-Z0-9_]|', '', $name);
-        if(empty($name)) {
-            return $default;
-        }
-        return ucfirst( strtolower($name) );
+        self::$controller = $controller;
+        self::$action = $action; 
     }
+
+    public static function getController()
+    {
+        return self::$controller;
+    }
+
+    public static function getAction()
+    {
+        return self::$action;
+    } 
 
 
     public function __destruct()

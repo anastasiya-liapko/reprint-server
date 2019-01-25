@@ -5,7 +5,8 @@ defined('ABS_PATH') or die;
 
 class ControllerComponent
 {
-    protected $smarty;
+    public $smarty;
+    private $body; 
 
 
     public function __construct()
@@ -21,14 +22,15 @@ class ControllerComponent
         $this->smarty->setTemplateDir(TemplatePrefix);
         $this->smarty->setCompileDir('../tmp/templates_c');
         $this->smarty->setCacheDir('../tmp/cache');
-        $this->smarty->setConfigDir('../library/Smarty/configs');        
+        $this->smarty->setConfigDir('../library/Smarty/configs'); 
+        $this->smarty->assign('pageTitle', 'Reprint');              
 
     }
-
+/*
     protected function loadTemplate($templateName)
     {
-        $this->smarty->display($templateName . TemplatePostfix);
-    }
+        $this->body = $templateName . TemplatePostfix;
+    }*/  
 
     public static function redirect($arr = [])    
     {        
@@ -37,7 +39,7 @@ class ControllerComponent
             $url = '/index.php?'. http_build_query($arr);
         }
 
-        header('HTTP/1.1 200 OK');
+        header($_SERVER["SERVER_PROTOCOL"].' 200 OK');
         header('Location: http://'.$_SERVER['HTTP_HOST'] . $url);
         exit();
     }
@@ -53,6 +55,12 @@ class ControllerComponent
         }
 
         return $url; 
+    }
+
+    protected function page404()
+    {
+        header($_SERVER["SERVER_PROTOCOL"].' 404 Not Found');
+        $this->loadTemplate('error'); 
     }
 
     /**
@@ -136,6 +144,52 @@ class ControllerComponent
         return $output;
 
     }
+
+
+    public static function getSession($key, $default = false)
+    {
+        if(isset($_SESSION) && isset($_SESSION[$key])) {
+            return $_SESSION[$key];
+        }
+        return $default;
+    }
+
+    public static function setSession($key, $val)
+    {      
+        if(isset($_SESSION)) {             
+            $_SESSION[$key] = $val;                       
+        }     
+    }
+
+    public static function clearSession()
+    {
+        session_destroy();
+    }
+ 
+    protected function loadTemplate($templateName)
+    {
+        //Сделать универсальный механизм работы с модулями
+        (new CartModule($this->smarty))->index();
+        (new CategoriesModule($this->smarty))->index();      
+
+        $controller = RoutedComponent::getController();
+        $action = RoutedComponent::getAction();      
+
+        if($controller == 'index' && $action == 'index'){
+            $header =  'headerFirst'. TemplatePostfix;;
+        } else {
+            $header =  'headerSecond'. TemplatePostfix;
+        }
+  
+        $this->smarty->assign('header', $header);  
+        $this->smarty->assign('body', $templateName . TemplatePostfix);
+        $this->smarty->assign('footer', 'footer' . TemplatePostfix);
+       
+
+        $this->smarty->display('template' . TemplatePostfix);
+    }
+
+    
 
    
 

@@ -1,17 +1,18 @@
     <footer class="footer">
       <div class="container">
-        <div class="footer__menu menu d-flex flex-column flex-md-row justify-content-between align-items-center pt-3 pb-3 pt-md-5 pb-md-5">  
-          <!-- <a class="link link_dark link_uppercase" href="/index.php?controller=category">Каталог</a> -->
-
+        <div class="footer__menu menu d-flex flex-column flex-md-row justify-content-between align-items-center pt-3 pb-3 pt-md-5 pb-md-5">       
           <div class="btn-group dropup">
+          {if isset($modCategoriesCat)}  
             <button type="button" class="link link_dark link_uppercase link_dropdown" id="dropupMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Каталог
             </button>
             <div class="dropdown-menu" id="dropupMenu">
-              <a class="dropdown-item" href="/index.php?controller=category">История</a>
-              <a class="dropdown-item" href="/index.php?controller=category">Фантастика</a>
+                {foreach $modCategoriesCat as $cat}
+                    <a class="dropdown-item" href="{ControllerComponent::link(['controller'=>'category', 'id' => $cat.id])}">{$cat.name}</a>
+                {/foreach}
             </div>
           </div>
+          {/if}
 
           <a class="link link_dark link_uppercase" href="/index.php?controller=index&action=order">Как сделать заказ</a>
           <a class="link link_dark link_uppercase" href="/index.php?controller=index&action=services">Оплата и доставка</a>
@@ -34,23 +35,11 @@
   <script src="assets/js/mask.js"></script>
   <script src="assets/js/message-form.js"></script>
   <script src="assets/js/order-form.js"></script>
-  <!--<script src="assets/js/pagination.js"></script>-->
-  <!--<script src="assets/js/sort.js"></script>-->
-  <script src="assets/js/book-form.js"></script>
+  <!--<script src="assets/js/book-form.js"></script>-->
   <script src="assets/js/search-form.js"></script>
-  <script src="assets/js/add-to-cart.js"></script>
+  <script src="assets/js/cart.js"></script>
   <script src="assets/js/select.js"></script>
   <!-- <script src="assets/js/dropdown.js"></script> -->
 
-  <!-- razdel -->
-  {if isset($catId) && ($catId == 1 || $catId == 5)}
-  <!--<script type="text/javascript">
-    var rsProducts = {$rsProducts|json_encode};
-  </script>-->
-  <!--<script src="assets/js/add-book.js"></script>-->
-  <!--<script src="assets/js/sort.js"></script>-->
-  <!--<script src="assets/js/pagination.js"></script>-->
-  {/if}
 
-  </body>
-</html>
+

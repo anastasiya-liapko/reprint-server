@@ -26,12 +26,13 @@ class ProductController extends ControllerComponent
         $product = $productsModel->getItem($where);
         
         if(!$product) {
-            parent::redirect();
+            $this->page404();
+            exit;            
         }
 
-        $formats = $productsModel->getAttributes($itemId, 'formats');
-        $types = $productsModel->getAttributes($itemId, 'types');
-        $covers = $productsModel->getAttributes($itemId, 'covers');
+        $formats = $productsModel->getAttributes($itemId, 'format');
+        $types = $productsModel->getAttributes($itemId, 'type');
+        $covers = $productsModel->getAttributes($itemId, 'cover');
         
 
         $whereImg = ['field' => 'book_id', 'value' => $itemId, 'type' => '='];
@@ -60,9 +61,9 @@ class ProductController extends ControllerComponent
         $this->smarty->assign('covers', $covers);
         $this->smarty->assign('category', $category);
 
-        $this->loadTemplate('header');
+
         $this->loadTemplate('book-page');
-        $this->loadTemplate('footer');
+ 
     }
 
 }

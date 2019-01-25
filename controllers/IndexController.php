@@ -11,59 +11,32 @@ class IndexController extends ControllerComponent
     */
 
     public function indexAction() 
-    {
-
-        $currentUrl = 'index'; 
-        
+    {        
         $this->smarty->assign('pageTitle', 'Reprint');
-        $this->smarty->assign("currentUrl", $currentUrl); //мне кажется это лишние, то для чего получают этот параметр надо реализовывать по другому 
-
-        $this->loadTemplate('header');
-        $this->loadTemplate('index');
-        $this->loadTemplate('footer'); 
-        
+        $this->loadTemplate('index'); 
     }
 
 
     public function orderAction() 
-    {
-        
+    {        
         $this->smarty->assign('pageTitle', 'Reprint');
-        $this->smarty->assign("currentUrl", 'order'); //мне кажется это лишние, то для чего получают этот параметр надо реализовывать по другому 
-
-        $this->loadTemplate('header');
-        $this->loadTemplate('order');
-        $this->loadTemplate('footer'); 
-        
+        $this->loadTemplate('order');        
     }
 
 
 
     public function servicesAction() 
-    {
-        
-        $this->smarty->assign('pageTitle', 'Reprint');
-        $this->smarty->assign("currentUrl", 'services'); //мне кажется это лишние, то для чего получают этот параметр надо реализовывать по другому 
-
-        $this->loadTemplate('header');
-        $this->loadTemplate('services');
-        $this->loadTemplate('footer'); 
-        
+    {        
+        $this->smarty->assign('pageTitle', 'Услуги');
+        $this->loadTemplate('services');        
     }
 
 
 
     public function contactsAction() 
-    {
-        $currentUrl = 'index'; 
-        
-        $this->smarty->assign('pageTitle', 'Reprint');
-        $this->smarty->assign("currentUrl", 'contacts'); //мне кажется это лишние, то для чего получают этот параметр надо реализовывать по другому 
-
-        $this->loadTemplate('header');
+    {        
+        $this->smarty->assign('pageTitle', 'Контакты');   
         $this->loadTemplate('contacts');
-        $this->loadTemplate('footer'); 
-        
     }
 
 

@@ -156,8 +156,7 @@ class ModelComponent {
         } 
 
         $c = (($count && $limit) ? ' SQL_CALC_FOUND_ROWS ' : '');
-
-        //myLog($sql, 'sql');
+     
         $stmt = $this->db->prepare('SELECT '. $c . $s .' FROM '. $tableName . $w . $o . $l); 
         $stmt->execute($params);
         $result = [];
@@ -213,28 +212,100 @@ class ModelComponent {
     }
 
     /**
-     * @$values array  ['name' => 'Книга', 'order' => 1] 
-     * не проверял этот метод
+     * $values array  ['name' => 'Книга', 'order' => 1] 
      */
     public function insert(array $values)
     {
         $tableName = $this->getTableName();
         
-        $filds1 = $filds2 = []; 
-        foreach($value as $field => $val) {
+        $fields1 = $fields2 = $fields3 = []; 
+        foreach($values as $field => $val) {
             $fieldEsc = $this->validField($field);
             if(!$fieldEsc) { continue; }
-            $filds1[] = $fieldEsc;
-            $filds2[] = ':'.$field;       
+            $fields1[] = $fieldEsc;
+            $fields2[':'.$field] = $val;
+            $fields3[] = ':'.$field;
         }
 
-        if(!empty($filds1)) {
+        if(empty($fields1)) {
             return false;
         }
 
-        $stmt = $this->db->prepare('INSERT INTO '. $tableName .' ('.implode(',', $filds1).') VALUES ('.implode(',', $filds2).') ');
-        $stmt->execute($value);
+        $stmt = $this->db->prepare('INSERT INTO '. $tableName .' ('.implode(', ', $fields1).') VALUES ('.implode(', ', $fields3).')');
+        foreach($fields2 as $f => $v){
+            if(is_null($v)) {
+                $stmt->bindValue($f, $v, PDO::PARAM_NULL); 
+            } else {
+                $stmt->bindValue($f, $v);
+            }            
+        }
+        $stmt->execute();
         return $this->db->lastInsertId();        
+    }
+
+
+
+    /**
+     * @$values array  
+     *  [
+     *      ['name' => 'Колобок', 'order' => 1],
+     *      ['name' => 'Три поросёнка', 'order' => 3],
+     *  ] 
+     */
+    public function insertMultiple(array $values)
+    {
+        $tableName = $this->getTableName(); 
+        
+        $firstArr = $values[key($values)];
+        if(!is_array($firstArr)) {
+            return false;
+        }
+
+        $allVal = $fieldsEsc = $rows = $filds = [];
+
+        foreach($firstArr as $field => $val){
+            $fieldEsc0 = $this->validField($field);
+            if(!$fieldEsc0) { continue; }
+            $fields[] = $field;
+            $fieldsEsc[] = $fieldEsc0;
+        } 
+        
+        if(empty($fields)) {
+            return false;
+        }        
+        
+        $i = 0;
+        foreach($values as $arr) {
+            if(!is_array($arr)) {
+                continue;
+            }
+            $item = [];
+            foreach($fields as $field) {
+                $item[] = ':i'.$i; 
+                if(!array_key_exists($field, $arr)) { return false; }
+                $allVal[':i'.$i] = $arr[$field];
+                $i++;      
+            }
+            $rows[] = '('. implode(', ', $item) .')';     
+        }
+        
+        if(empty($allVal)) {
+            return false;
+        }
+
+        $sql = 'INSERT INTO '. $tableName .' ('.implode(',', $fieldsEsc).') VALUES '.implode(', ', $rows);
+
+        $stmt = $this->db->prepare($sql);
+        foreach($allVal as $f => $v){
+            if(is_null($v)) {
+                $stmt->bindValue($f, $v, PDO::PARAM_NULL); 
+            } else {
+                $stmt->bindValue($f, $v);
+            }            
+        }        
+        $stmt->execute();
+        $lastInsertId =  $this->db->lastInsertId();
+        return $lastInsertId;   
     }
 
 

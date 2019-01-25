@@ -17,16 +17,17 @@ class ProductsModel extends ModelComponent
 
     public function getAttributes($id, $type)
     {
-        if(!in_array($type, ['covers', 'formats', 'types'])) {
+        if(!in_array($type, ['cover', 'format', 'type'])) {
             return false;
         }
 
-        $field = mb_substr($type, 0, (mb_strlen($type, 'UTF-8') - 1), 'UTF-8');
+        $fields = $type.'s';
+        //$field = mb_substr($type, 0, (mb_strlen($type, 'UTF-8') - 1), 'UTF-8') .'_id';
 
         $sql = 
         'SELECT f.`name`, f.id, bf.price, bf.is_default, f.default_price df 
-        FROM '.$type.' f
-        INNER JOIN book_'.$type.' bf ON f.id = bf.'.$field.'_id
+        FROM '.$fields.' f
+        INNER JOIN book_'.$fields.' bf ON f.id = bf.'.$type.'_id
         WHERE bf.book_id = :id
         ORDER BY f.orderby';  
 

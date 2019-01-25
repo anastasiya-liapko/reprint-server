@@ -8,18 +8,20 @@
           </div>
 
           <div class="book-page__descr">
-            <span class="page__title mt-0 mb-sm-0 d-block">{$product.name}</span>
+            <h1 class="page__title mt-0 mb-sm-0 d-block">{$product.name}</h1>
             <span class="info__author d-block text-center">{$product.author}</span>
             <div class="d-flex align-items-baseline mb-4 mt-3">
               <span class="info__category d-block w-50">{$category.name}</span>
-              <span class="info__price d-block w-50 text-right">{$product.price}</span>
+              <span class="info__price d-block w-50 text-right">{$product.price} руб.</span>
             </div>
             <span class="info__subtitle d-block">Описание</span>
             <span class="info__text d-inline-block text-justify text-xl-left">{$product.dsc}</span>
             <span class="info__subtitle d-block">Еще информация:</span>
             <span class="info__text d-inline-block text-justify text-xl-left">{$product.extra}</span>
 
-            <form id="bookForm" class="book-page__form d-flex flex-column">
+            <form action="/index.php?controller=cart" method="post" id="bookForm" class="book-page__form d-flex flex-column">
+                <input type="hidden" name="product_id" value="{$product.id}">
+                <input type="hidden" name="quantity" value="1">
 
               
                 <div class="select__wrapper d-flex flex-column flex-md-row justify-content-between">
@@ -27,9 +29,9 @@
                 {if $types}
                   <div class="select select__paper">
                     <span class="info__subtitle d-block">Бумага:</span>
-                    <select name="paper" id="paper">                    
+                    <select name="type" id="paper">                    
                       {foreach $types as $item }
-                        <option class="text-center" {if $item.is_default == 1} selected {/if} value="{$item.id}">{$item.name}</option>
+                        <option {if $item.is_default == 1} selected {/if} value="{$item.id}">{$item.name}</option>
                       {/foreach}                    
                     </select>
                   </div>
@@ -60,8 +62,7 @@
 
                 </div>
 
-              <div class="button__wrapper ml-auto mr-auto mr-xl-0">
-                <!-- <button type="submit" id="addCart_{$itemId}" onClick="addToCart({$itemId})" class="button button_square">Добавить в корзину</button> -->
+              <div class="button__wrapper ml-auto mr-auto mr-xl-0">            
                 <button type="submit" class="button button_square">Добавить в корзину</button>
               </div>
             </form>

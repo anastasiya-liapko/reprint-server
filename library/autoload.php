@@ -4,7 +4,7 @@ defined('ABS_PATH') or die;
 
 spl_autoload_register( function($class) {
 
-    $folders = ['component', 'controller', 'model'];
+    $folders = ['component', 'controller', 'model', 'module'];
     $folder = '';
     foreach($folders as $fol) {
         if(stripos($class, $fol) !== false) {

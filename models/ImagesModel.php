@@ -23,7 +23,11 @@ class ImagesModel extends ModelComponent
             ['field' => 'book_id', 'type' => 'IN', 'value' => $ids],
             ['field' => 'is_cover', 'type' => '=', 'value' => 1],
         ];
-        $images = $this->getList($where, ['book_id', 'img']);        
+        $images = $this->getList($where, ['book_id', 'img']);  
+        if(!$images || empty($images)) {
+            return false;
+        }
+              
         $newImg = array_column($images, 'img', 'book_id');
 
         foreach($list as &$item) { 
