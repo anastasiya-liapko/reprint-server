@@ -30,20 +30,20 @@
     display: flex !important
     margin-left: 0
     margin-right: 0
-    animation-name: fade-in
-    animation-duration: 0.2s
+    // animation-name: fadeIn
+    // animation-duration: 0.5s
 
-@keyframes fade-in
-  from 
-    opacity: 0.5
-  to
-    opacity: 1
+// @keyframes fade-in
+//   from 
+//     opacity: 0.5
+//   to
+//     opacity: 1
 
-@keyframes fade-out
-  from 
-    opacity: 1
-  to
-    opacity: 0.5
+// @keyframes fade-out
+//   from 
+//     opacity: 1
+//   to
+//     opacity: 0.5
 
 @media(min-width: 576px)
 
@@ -57,6 +57,10 @@
     .header__search
       width: 100%
 
+  .header_index
+    .header__basket
+      order: 2 !important
+
 @media(min-width: 768px)
 
   .header__menu,
@@ -67,6 +71,11 @@
   .header_index.open
     .header__search
       width: auto
+
+  .header_index
+    .header__basket
+      order: 4 !important
+    
 
 @media(min-width: 992px)
 
@@ -83,6 +92,21 @@
       .search-form__input
         width: 394px
 
+  .header_index
+    .header__menu
+      margin-left: 15px
+      margin-right: 15px
+      .dropdown
+        margin: 0 auto
+    .header__basket
+      margin-left: auto
+
+  .header_index.open
+    .search-form_index
+      margin-right: 50px
+      input[name=search]
+        width: auto
+
 @media(min-width: 1200px)
 
   .header_index.open
@@ -90,6 +114,12 @@
       .search-form__input
         width: 434px
 
+  .header_index
+    .header__menu
+      margin-left: 50px
+      margin-right: 50px
+      
+    
 
 
 

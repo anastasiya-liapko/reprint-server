@@ -11,10 +11,10 @@
 
           {if isset($modCategoriesCat)} 
           <div class="dropdown"> 
-            <button type="button" class="link link_dark link_uppercase link_dropdown" id="dropupMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="link link_dark link_uppercase link_dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Каталог
             </button>
-            <div class="dropdown-menu" id="dropdownMenu">
+            <div class="dropdown-menu animated faster" id="dropdownMenu">
                 {foreach $modCategoriesCat as $cat}
                     <a class="dropdown-item" href="{ControllerComponent::link(['controller'=>'category', 'id' => $cat.id])}">{$cat.name}</a>
                 {/foreach}

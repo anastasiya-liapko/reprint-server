@@ -1,5 +1,5 @@
 <header class="header header_index">
-    <div class="container d-flex flex-wrap flex-lg-nowrap justify-content-sm-between align-items-center p-0 p-lg-3">
+    <div class="container d-flex flex-wrap flex-lg-nowrap justify-content-sm-between justify-content-lg-end align-items-center p-0 p-lg-3">
         <div class="header__logo logo order-1 flex-grow-0 flex-shrink-0 p-3 p-lg-0">
           <a href="/">
             <img src="assets/img/logo.png" alt="">
@@ -10,10 +10,10 @@
         <div class="header__menu menu order-3 order-md-2 order-lg-2 flex-grow-1 flex-sm-grow-0 text-center p-3 p-lg-0">
           {if isset($modCategoriesCat)} 
           <div class="dropdown"> 
-            <button type="button" class="link link_dark link_uppercase link_dropdown" id="dropupMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="link link_dark link_uppercase link_dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Каталог
             </button>
-            <div class="dropdown-menu" id="dropdownMenu">
+            <div class="dropdown-menu animated faster" id="dropdownMenu">
                 {foreach $modCategoriesCat as $cat}
                     <a class="dropdown-item" href="{ControllerComponent::link(['controller'=>'category', 'id' => $cat.id])}">{$cat.name}</a>
                 {/foreach}
@@ -30,9 +30,9 @@
         </div>
         <!-- title -->
 
-        <div class="header__search search  order-4 order-md-3 order-lg-4 flex-grow-1 flex-sm-grow-0 text-center p-3 p-lg-0">
+        <div class="header__search search order-4 order-md-3 order-lg-4 flex-grow-1 flex-sm-grow-0 flex-lg-grow-1 text-center p-3 p-lg-0">
 
-          <form action="/index.php?controller=category&id=1" method="GET" class="search-form search-form_index position-relative  d-none">
+          <form action="/index.php?controller=category&id=1" method="GET" class="search-form search-form_index animated fast position-relative  d-none">
             <input type="hidden" value="category" name="controller">
             <input type="text" name="search" value="{if isset($search)}{$search}{/if}" class="search-form__input flex-grow-1" placeholder="Поиск товаров в каталоге">
             <div class="search-form__button-wrapper d-flex justify-content-center align-items-center">              

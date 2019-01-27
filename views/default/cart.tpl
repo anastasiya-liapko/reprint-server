@@ -46,7 +46,7 @@
                     <span class="currency">руб.</span>
                   </div>
 
-                    <button class="order__item-del d-flex justify-content-end order-2 order-md-9 mt-lg-3 mt-xl-0" type="submit" name="delete" value="{$key}"> 
+                    <button class="order__item-del animated d-flex justify-content-end order-2 order-md-9 mt-lg-3 mt-xl-0" type="submit" name="delete" value="{$key}"> 
                         <span class="iconmoon icon-del"></span> 
                     </button>
                   

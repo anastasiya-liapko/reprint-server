@@ -3,10 +3,10 @@
         <div class="footer__menu menu d-flex flex-column flex-md-row justify-content-between align-items-center pt-3 pb-3 pt-md-5 pb-md-5">       
           <div class="btn-group dropup">
           {if isset($modCategoriesCat)}  
-            <button type="button" class="link link_dark link_uppercase link_dropdown" id="dropupMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="link link_dark link_uppercase link_dropdown" id="dropupMenuButton">
               Каталог
             </button>
-            <div class="dropdown-menu" id="dropupMenu">
+            <div class="dropdown-menu animated faster" id="dropupMenu">
                 {foreach $modCategoriesCat as $cat}
                     <a class="dropdown-item" href="{ControllerComponent::link(['controller'=>'category', 'id' => $cat.id])}">{$cat.name}</a>
                 {/foreach}
@@ -39,7 +39,7 @@
   <script src="assets/js/search-form.js"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/select.js"></script>
-  <!-- <script src="assets/js/dropdown.js"></script> -->
+  <script src="assets/js/dropdown.js"></script>
 
 
 

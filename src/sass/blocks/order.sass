@@ -44,13 +44,17 @@
   background-color: transparent
   width: 20px
   height: 30px
-  &:hover 
+  transition: all 0.2s
+  // &:hover 
+  //   cursor: pointer
+  //   transform: scale(1.13)
+  //   transition: transform 0.2s
+  // &:active
+  //   transform: scale(1)
+  //   transition: transform 0.2s
+  &:hover
     cursor: pointer
-    transform: scale(1.13)
-    transition: transform 0.1s
-  &:active
-    transform: scale(1)
-    transition: transform 0.1s
+    animation-name: rubberBand
 
 .order__item
   .jq-selectbox
