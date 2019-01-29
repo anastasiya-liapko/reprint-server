@@ -14,7 +14,7 @@
             <button type="button" class="link link_dark link_uppercase link_dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Каталог
             </button>
-            <div class="dropdown-menu animated faster" id="dropdownMenu">
+            <div class="dropdown-menu dropdown-menu_width animated faster" id="dropdownMenu">
                 {foreach $modCategoriesCat as $cat}
                     <a class="dropdown-item" href="{ControllerComponent::link(['controller'=>'category', 'id' => $cat.id])}">{$cat.name}</a>
                 {/foreach}

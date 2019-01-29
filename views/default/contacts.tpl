@@ -28,12 +28,12 @@
 
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center align-items-md-start mt-5">
               <div class="recaptcha mr-md-5 mb-5 mb-md-0">
-                <div class="g-recaptcha" data-sitekey="6Le-w4QUAAAAAOcxwpWlVCXIwO4m6ZYghcQNuj4q"></div>
+                <div class="g-recaptcha" data-callback="recaptchaCallback2" data-sitekey="6Le-w4QUAAAAAOcxwpWlVCXIwO4m6ZYghcQNuj4q"></div>
                 <div class="text-danger pl-2" id="recaptchaError"></div>
               </div>
 
               <div class="button__wrapper">
-                <button type="submit" class="button button_square" name="messageForm">Отправить</button>
+                <button type="submit" class="button button_square disabled submit" name="messageForm" disabled>Отправить</button>
               </div>
               <span id="error"></span>
             </div>

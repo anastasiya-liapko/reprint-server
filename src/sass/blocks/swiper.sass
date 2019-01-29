@@ -1,0 +1,45 @@
+.swiper-button-prev,
+.swiper-button-next
+  top: 100%
+  width: 40px
+  height: 40px
+  margin-top: 25px
+  background-color: rgba(148, 148, 148, 0.5)
+  background-image: none
+  transition: all 0.3s ease
+  &::after
+    content: ""
+    position: absolute
+    top: 50%
+    left: 50%
+    width: 8px
+    height: 8px
+    margin-top: -4px
+    border-bottom: 2px solid #333
+    border-right: 2px solid #333
+    transition: all 0.3s ease
+  &:hover
+    background-color: #333
+  &:hover::after
+    border-bottom: 2px solid #fff
+    border-right: 2px solid #fff
+  &:focus
+    outline: none
+
+.swiper-button-next
+  right: 0
+  &::after
+    margin-left: -5px
+    transform: rotate(-45deg)
+  &:active::after
+    transform: translateX(4px) rotate(-45deg)
+
+.swiper-button-prev
+  left: auto
+  right: 60px
+  &::after
+    margin-left: -3px
+    transform: rotate(135deg)
+  &:active::after
+    transform: translateX(-4px) rotate(135deg)
+    

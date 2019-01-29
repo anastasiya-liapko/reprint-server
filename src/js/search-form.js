@@ -9,7 +9,7 @@ $(function () {
     $('.search-form_index').addClass('fadeIn');
     $('.search-form_index').on('animationend', function() { $('.header_index').addClass('open'); })
 
-    $('.search-form_index .search-form__input').focus();
+    // $('.search-form_index .search-form__input').focus();
   })
 
   $('.search-form__close').click(function() {

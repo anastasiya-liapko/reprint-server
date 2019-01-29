@@ -41,7 +41,7 @@
           </div>
           <!--books -->     
 
-          <div class="pagination d-flex justify-content-center pt-5 pb-5">            
+          <div class="pagination__wrapper d-flex justify-content-center pt-5 pb-5">            
           {ControllerComponent::pagination($page, $count, $itemInPage, $link, ['cssLink'=>'link link_page link_light', 'cssActive'=>'link link_page link_light active', 'text_first' => false,
             'text_last' => false,
             'text_next' => false,

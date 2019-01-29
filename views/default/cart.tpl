@@ -27,7 +27,7 @@
 
                   <span class="order__item-multiplication sign sign__multiplication mt-3 mt-lg-0 mb-3 mb-lg-0 ml-4 mr-4 order-4 order-md-3">x</span>
 
-                  <input type="text" name="products[{$key}][quantity]" value="{$item.quantity}" class="input order-5 order-md-4 mt-3 mt-lg-0 mb-3 mb-lg-0 quantity_js"  placeholder="кол-во">
+                  <input type="text" name="products[{$key}][quantity]" value="{$item.quantity}" class="input input_qty order-5 order-md-4 mt-3 mt-lg-0 mb-3 mb-lg-0 quantity_js" placeholder="" maxlength="6">
 
                   {foreach $item.adv_params as $field => $param}    
                     <div class="select order-6 order-md-5 d-flex mb-3 mb-lg-0">
@@ -46,7 +46,7 @@
                     <span class="currency">руб.</span>
                   </div>
 
-                    <button class="order__item-del animated d-flex justify-content-end order-2 order-md-9 mt-lg-3 mt-xl-0" type="submit" name="delete" value="{$key}"> 
+                    <button id="del" class="order__item-del animated d-flex justify-content-end order-2 order-md-9 mt-lg-3 mt-xl-0" type="submit" name="delete" value="{$key}" data-toggle="modal" data-target="#modalDelete"> 
                         <span class="iconmoon icon-del"></span> 
                     </button>
                   
@@ -126,12 +126,12 @@
 
             <div class="d-flex flex-column flex-md-row justify-content-end align-items-center align-items-md-start mt-3">
               <div class="recaptcha mr-md-5 mb-4 mb-md-0">
-                <div class="g-recaptcha" data-sitekey="6Le-w4QUAAAAAOcxwpWlVCXIwO4m6ZYghcQNuj4q"></div>
+                <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6Le-w4QUAAAAAOcxwpWlVCXIwO4m6ZYghcQNuj4q"></div>
                 <div class="text-danger pl-2" id="recaptchaError"></div>
               </div>
 
               <div class="button__wrapper order__button ml-md-5 ml-lg-0">
-                <button type="submit" class="button button_square" name="send" value="1">Отправить</button>
+                <button type="submit" class="button button_square disabled submit" name="send" value="1" disabled>Отправить</button>
               </div>
               
             </div>

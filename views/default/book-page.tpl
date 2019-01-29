@@ -2,9 +2,31 @@
       <div class="container">
         <div class="page book-page d-flex flex-column align-items-center align-items-xl-start flex-xl-row justify-content-between mt-5 mb-5 pb-5">
 
-          <div class="book-page__cover flex-shrink-0 flex-grow-0 mb-5 mb-xl-0">
-            <img src="{if $image}{$image}{else}/assets/img/book.jpg{/if}" alt="{$product.name}">
-            <!-- $images - другие картинки книги -->
+          <div class="book-page__cover flex-shrink-0 flex-grow-0 position-relative">
+
+            <!-- Slider main container -->
+            <div class="swiper-container">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                      <img src="{if $image}{$image}{else}/assets/img/book.jpg{/if}" alt="{$product.name}">
+                      <!-- $images - другие картинки книги -->
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="{if $image}{$image}{else}/assets/img/book.jpg{/if}" alt="{$product.name}">
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="{if $image}{$image}{else}/assets/img/book.jpg{/if}" alt="{$product.name}">
+                    </div>
+                </div>
+            </div>
+            <!-- swiper-container -->
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
           </div>
 
           <div class="book-page__descr">
