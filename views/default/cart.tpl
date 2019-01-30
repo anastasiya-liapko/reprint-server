@@ -8,10 +8,10 @@
 
         
               {foreach $products as $key => $item}                 
-              <input type="hidden" name="products[{$key}][product_id]" value="{$item.id}">
+              
               <div class="order__item order__border-bottom pb-3 pt-3">
 
-                <div class="d-flex flex-wrap align-items-center justify-content-between justify-content-lg-start justify-content-xl-between pr-lg-4 mt-3">
+                <div class="d-flex flex-wrap align-items-center justify-content-between justify-content-lg-start justify-content-xl-between mt-3">
 
                   <div class="order__item-descr order-1 flex-md-grow-1 mb-lg-3">
                     <span class="d-block">
@@ -46,21 +46,23 @@
                     <span class="currency">руб.</span>
                   </div>
 
-                    <button id="del" class="order__item-del animated d-flex justify-content-end order-2 order-md-9 mt-lg-3 mt-xl-0" type="submit" name="delete" value="{$key}" data-toggle="modal" data-target="#modalDelete"> 
+
+                  <input type="hidden" name="products[{$key}][product_id]" value="{$item.id}">
+
+                    <button class="order__item-del animated d-flex justify-content-end order-2 order-md-9 mt-lg-3 mt-xl-0" type="button" data-toggle="modal" data-target="#modalDelete" data-key="{$key}"> 
                         <span class="iconmoon icon-del"></span> 
                     </button>
                   
                 </div>
 
-              </div>
-              <!-- order__item -->
+              </div>            
               {/foreach}
 
               <div class="order__delivery d-flex justify-content-between order__border-bottom pb-3 pt-3">
                 <span class="order__delivery-text">Доставка</span>
                 <div class="order__item-price order__delivery-price order__delivery-price_fix-width">
                   <span class="order__item-addition sign sign__equal ml-2 mr-2">=</span>
-                  <span class="number">{$sumDelivery}</span>
+                  <span id="sumDelivery" class="number">{$sumDelivery}</span>
                   <span class="currency">руб.</span>
                 </div>
               </div>
@@ -70,7 +72,7 @@
                 <span class="order__general-text">Итого</span>
                 <div class="order__item-price order__general-price order__general-price_fix-width">
                   <span class="order__item-addition sign sign__equal ml-2 mr-2">=</span>
-                  <span class="number">{$itogo}</span>
+                  <span id="itogo" class="number">{$itogo}</span>
                   <span class="currency">руб.</span>
                 </div>
               </div>
@@ -90,6 +92,8 @@
                     <option {if $requisites.delivery_type == 'post'} selected {/if} value="post">Почтой</option>
                     <option {if $requisites.delivery_type == 'pickup'} selected {/if} value="pickup">Самовывоз</option>
                   </select>
+
+                  <span id="cartFormValid-delivery-type" class="error-text"></span>
                 </div>
               </div>
              
@@ -98,28 +102,33 @@
               </div>
 
               <div class="order__recipient">
-                <label class="label d-block" for="recipient">Получатель</label>
-                <input type="text" class="input{if isset($errorRequisites.name)} error {/if}" id="recipient" name="name" value="{$requisites.name}" placeholder="Федор Петрович Рагозин">
+                <label class="label d-block" for="name">Получатель</label>
+                <input type="text" class="input{if isset($errorRequisites.name)} error {/if}" id="name" name="name" value="{$requisites.name}" placeholder="Федор Петрович Рагозин">
+                <span id="cartFormValid-name" class="error-text"></span>
               </div>
 
               <div class="order__address">
                 <label class="label d-block" for="address">Адрес</label>
                 <input type="text" class="input{if isset($errorRequisites.address)} error {/if}" id="address" name="address" value="{$requisites.address}" placeholder="Российская Федерация, Ленина 345900">
+                <span id="cartFormValid-address" class="error-text"></span>
               </div>
 
               <div class="order__phone">
                 <label class="label d-block" for="phone">Телефон</label>
                 <input type="text" class="input{if isset($errorRequisites.phone)} error {/if}" id="phone" name="phone" value="{$requisites.phone}" placeholder="+7234567890">
+                <span id="cartFormValid-phone" class="error-text"></span>
               </div>
 
               <div class="order__email">
                 <label class="label d-block" for="email">Email</label>
                 <input type="email" class="input{if isset($errorRequisites.email)} error {/if}" id="email" name="email" value="{$requisites.email}" placeholder="default@mail.com">
+                <span id="cartFormValid-email" class="error-text"></span>
               </div>
 
               <div class="order__comment">
                 <label class="label d-block" for="comment">Комментарий</label>
-                <textarea type="text" class="input input_textarea" id="comment" name="comment" rows="3">{$requisites.comment}</textarea>
+                <textarea class="input input_textarea" id="comment" name="comment" rows="3">{$requisites.comment}</textarea>
+                <span id="cartFormValid-comment" class="error-text"></span>
               </div>
             </div>
             <!-- order__contacts -->
@@ -131,7 +140,7 @@
               </div>
 
               <div class="button__wrapper order__button ml-md-5 ml-lg-0">
-                <button type="submit" class="button button_square disabled submit" name="send" value="1" disabled>Отправить</button>
+                <button id="send" type="submit" class="button button_square submit" name="send" value="1">Отправить</button>
               </div>
               
             </div>

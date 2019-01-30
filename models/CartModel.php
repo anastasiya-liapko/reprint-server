@@ -32,7 +32,7 @@ class CartModel extends ModelComponent
         $product['adv_params'] = [];
         $keyArr = ['product' => $add['product_id']]; 
 
-        $params = ['cover', 'format', 'type'];
+        $params = ['type','cover', 'format'];
         foreach($params as $item){
             $param = $this->advancedParams($add['product_id'], $item, $add[$item]);
             if($param[$item.'_id']) {
@@ -116,7 +116,7 @@ class CartModel extends ModelComponent
         $new['book_id'] = $product['id'];
         $new['item_count'] = $add['quantity'];
 
-        $params = ['cover', 'format', 'type'];
+        $params = ['type', 'cover', 'format', ];
         foreach($params as $item){
             $param = $this->advancedParams($add['product_id'], $item, $add[$item]);
             if($param[$item.'_id']) {

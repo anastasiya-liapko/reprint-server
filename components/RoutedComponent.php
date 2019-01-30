@@ -48,7 +48,7 @@ class RoutedComponent
 
     public function __destruct()
     {
-        DBcomponent::close();
+        DBComponent::close();
     }
 
 }

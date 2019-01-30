@@ -14,15 +14,19 @@
 
           <p class="page__title mb-sm-0">Сообщение</p>
 
-          <form id="messageForm" class="contacts__form mt-4 mb-5" >
+          <form id="messageForm" class="contacts__form mt-4 mb-5">
             <div class="d-flex flex-column flex-md-row justify-content-between">
-              <div class="d-flex flex-column flex-grow-1 mr-md-5 mb-5 mb-md-0">
-                <input id="name" class="input mb-2" type="text" name="name" placeholder="Имя">
-                <input id="phone" class="input mb-2" type="text" name="phone" placeholder="Телефон">
-                <input id="email" class="input" type="text" name="email" placeholder="Email">
+              <div class="contacts__form-column d-flex flex-column mr-md-5 mb-5 mb-md-0">
+                <input id="messageForm-name" class="input mb-2" type="text" name="name" placeholder="Имя">
+                <span id="messageFormValid-name" class="error-text"></span>
+                <input id="messageForm-phone" class="input mb-2" type="text" name="phone" placeholder="Телефон">
+                <span id="messageFormValid-phone" class="error-text"></span>
+                <input id="messageForm-email" class="input" type="text" name="email" placeholder="Email">
+                <span id="messageFormValid-email" class="error-text"></span>
               </div>
-              <div class="flex-grow-1">
-                <textarea class="input input_textarea" name="message" placeholder="Сообщение"></textarea>
+              <div class="contacts__form-column">
+                <textarea id="messageForm-message" class="input input_textarea" name="message" placeholder="Сообщение"></textarea>
+                <span id="messageFormValid-message" class="error-text"></span>
               </div>
             </div>
 
@@ -33,10 +37,12 @@
               </div>
 
               <div class="button__wrapper">
-                <button type="submit" class="button button_square disabled submit" name="messageForm" disabled>Отправить</button>
+                <button id="js-messageFormBtnSubmit" type="submit" class="button button_square disabled submit" name="messageForm" disabled>Отправить</button>
               </div>
               <span id="error"></span>
             </div>
+
+            <span id="messageFormValid-send" class="error-text error-text_bigger-font d-block text-center mt-2"></span>
 
           </form>
         </div>

@@ -13,11 +13,17 @@ class DBComponent
             //$config = include ABS_PATH . '/config.php';
             include_once  ABS_PATH .'/db.cfg.php'; 
 
-            $host   = ((defined('DB_HOST')) ? DB_HOST : 'localhost');
-            $port   = ((defined('DB_PORT')) ? DB_PORT : 3306);
-            $dbname = ((defined('DB_NAME')) ? DB_NAME : 'admin');
-            $user   = ((defined('DB_USER')) ? DB_USER : 'root');
-            $pass   = ((defined('DB_PASS')) ? DB_PASS : '');
+            // $host   = ((defined('DB_HOST')) ? DB_HOST : 'localhost');
+            // $port   = ((defined('DB_PORT')) ? DB_PORT : 3306);
+            // $dbname = ((defined('DB_NAME')) ? DB_NAME : 'admin');
+            // $user   = ((defined('DB_USER')) ? DB_USER : 'root');
+            // $pass   = ((defined('DB_PASS')) ? DB_PASS : '');
+
+            $host   = 'localhost';
+            $port   = 3306;
+            $dbname = 'reprint';
+            $user   = 'root';
+            $pass   = 'root';
 
             try {    
                 $db = new PDO(

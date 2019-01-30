@@ -42,7 +42,7 @@ class CartController extends ControllerComponent
 
     public function indexAction() 
     {
-        $result = $this->addProduct();
+        //$result = $this->addProduct();
         $this->displayCart();        
     }
 
@@ -50,6 +50,7 @@ class CartController extends ControllerComponent
     public function addAction()
     {
         $result = $this->addProduct();
+        $this->redirect(['controller'=>'cart']);
     }
 
     public function new_orderAction()
@@ -57,13 +58,81 @@ class CartController extends ControllerComponent
         $this->smarty->assign('pageTitle', 'Новый заказ');
         $this->loadTemplate('new_order'); 
     }
+
+    public function change_deliveryAction()
+    {
+        $result = ['status' => 0];
+        $delivery_type = filter_input(INPUT_POST, 'delivery_type', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(courier|post|pickup)$/i']]);
+        if($delivery_type) {
+            $default = [
+                'name' => '',
+                'address' => '',
+                'phone' => '',
+                'email' => '',
+                'comment' => '',
+                'delivery_type' => '',
+            ];
+            $requisites = parent::getSession('requisites', $default);
+            $requisites['delivery_type'] = $delivery_type;
+            parent::setSession('requisites', $requisites);
+            $total = parent::getSession('total', 0);
+            $sumDelivery = CartModel::calcDelivery();
+            $itogo = $total + $sumDelivery;
+            
+            $result = [
+                'itogo' => HtmlComponent::priceFormat($itogo),
+                'sumDelivery' => HtmlComponent::priceFormat($sumDelivery),
+                'status' => 1,
+            ];
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+    }
+
+
+    public function delete_productAction()
+    {
+        $result = ['status' => 0];
+
+        $delete = filter_input(INPUT_POST, 'delete', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^[a-zA-Z0-9]+$/']]); 
+        $cartProduct = parent::getSession('products', []); 
+        if($delete && isset($cartProduct[$delete])) {
+            $newTotal = parent::getSession('total', 0) - $cartProduct[$delete]['sum_item'];
+            $newQuantity = parent::getSession('quantity', 0) - $cartProduct[$delete]['quantity'];
+            if($newTotal < 0){ $newTotal = 0; }
+            if($newQuantity < 0){ $newQuantity = 0; }
+            $sumDelivery = 0;
+            if($newTotal > 0) {
+                $sumDelivery = CartModel::calcDelivery();
+                $itogo = $newTotal + $sumDelivery;
+            } else { 
+                $itogo = 0;
+            }
+            parent::setSession('total', $newTotal);
+            parent::setSession('quantity', $newQuantity);
+            parent::setSession('itogo', $itogo);
+            unset($cartProduct[$delete]);
+            parent::setSession('products', $cartProduct);
+
+            $result = [   
+                'quantity' => $newQuantity,
+                'itogo' => HtmlComponent::priceFormat($itogo),
+                'sumDelivery' => HtmlComponent::priceFormat($sumDelivery),
+                'status' => 1,
+            ];            
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+    }
     
 
     public function updateAction()
     {
         if(filter_has_var(INPUT_POST, 'delete')) {
 
-            $delete = filter_input(INPUT_POST, 'delete', FILTER_DEFAULT);
+            $delete = filter_input(INPUT_POST, 'delete', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^[a-zA-Z0-9]+$/']]);
             $cartProduct = parent::getSession('products', []);
             if($delete && isset($cartProduct[$delete])) {
                 $newTotal = parent::getSession('total', 0) - $cartProduct[$delete]['sum_item'];
@@ -99,8 +168,7 @@ class CartController extends ControllerComponent
                 return;
             }
 
-            $captcha = false;
-            myLog($requisites['g-recaptcha-response'], 'g-recaptcha-response');
+            $captcha = false;         
             if($requisites['g-recaptcha-response']) {
                 include_once ABS_PATH .'/library/recaptchalib.php';
                 $reCaptcha = new ReCaptcha(RECAPTCHA);
@@ -145,7 +213,8 @@ class CartController extends ControllerComponent
             $this->updateProduct(); 
         }
 
-        $this->displayCart();
+        //$this->displayCart();
+        $this->redirect(['controller'=>'cart']);
     }
 
     private function updateProduct()
@@ -264,8 +333,13 @@ class CartController extends ControllerComponent
             $itogo = 0;
         }
 
-        $this->smarty->assign('pageTitle', 'Корзина товаров');
-        $this->smarty->assign('currentUrl', 'cart');
+        $js = 
+        'jQuery(document).ready(function($) {      
+            $.startCart();
+        });';
+        $this->addJsCode($js);
+
+        $this->smarty->assign('pageTitle', 'Корзина товаров');    
         $this->smarty->assign('products', $products);
         $this->smarty->assign('requisites', $requisites);
         $this->smarty->assign('total', $total);

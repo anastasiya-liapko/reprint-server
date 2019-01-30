@@ -16,10 +16,8 @@ class CartModule
         $itogo = ControllerComponent::getSession('itogo', 0);
         $quantity = ControllerComponent::getSession('quantity', 0);
 
-        $itogo = number_format($itogo, 0, ',', ' ')  . ' руб.';
-
-        $this->smarty->assign('modCartTotal', $itogo);
-        $this->smarty->assign('modCartQuantity', $quantity . ' экз');
+        $this->smarty->assign('modCartTotal', HtmlComponent::priceFormat($itogo));
+        $this->smarty->assign('modCartQuantity', $quantity);
         $this->smarty->assign('positionModHeader', 'modCart'. TemplatePostfix);
     }
 

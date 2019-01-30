@@ -2,7 +2,61 @@
 
 //после загрузки веб-страницы
 $(function () {
+
+  jQuery(function($){
+    $("#messageForm-phone").mask("+79999999999");
+  });
+
+  var required = ['name', 'phone', 'email', 'message'];
+
+  var errorsTexts = 
+  {
+    email: 'Введите e-mail в формате default@mail.com',
+    phone: 'Введите номер телефона в формате +1234567890'
+  };
+
+  var phonePattern = /\+7[0-9]{10}/;
+  var emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+
+  var setError = function(errorObject) {
+    $('#messageFormValid-' + errorObject.name).text(errorObject.error);
+    $('#messageForm-' + errorObject.name).addClass('error');
+  };
+
+  var removeError = function(inputName) {
+    $('#messageFormValid-' + inputName).text('');
+    $('#messageForm-' + inputName).removeClass('error');
+  };
+
+
   var data = {};
+  var errorObject = {};
+
+
+  var validateInput = function (inputName, inputValue) {
+    errorObject = {};
+
+    if (inputValue === '') {
+      $.each(required, function (i, requiredFieldName) {
+        if (inputName === requiredFieldName) {
+          errorObject = {'name': inputName, 'error': 'Это обязательное поле'};
+        }
+      });
+    } else {
+      switch (inputName) {
+        case 'phone': 
+          errorObject = phonePattern.test(inputValue) ? {} : {'name': inputName, 'error': errorsTexts[inputName]};
+          break;
+        case 'email':
+          errorObject = emailPattern.test(inputValue) ? {} : {'name': inputName, 'error': errorsTexts[inputName]};
+          break;
+      };
+    }
+
+    return errorObject;
+  };
+
 
   var checkCaptcha = function() {
     // проверяем элемент, содержащий код капчи
@@ -19,16 +73,31 @@ $(function () {
       // получаем элемент, содержащий капчу
       $('#recaptchaError').text('');
     }
-  }
+  };
+
 
   var checkInputs = function(element) {
+    var valid = true;
+
     element.find('input').each(function() {
       data[$(this)[0].name] = $(this).val();
-    })
+    });
+
     element.find('textarea').each(function() {
       data[$(this)[0].name] = $(this).val();
-    })
-  }
+    });
+
+    $.each(data, function (inputName, inputValue) {
+      var error = validateInput(inputName, inputValue);
+      
+      if (Object.keys(error).length > 0) {
+        valid = false;
+      }
+    });
+
+    return valid;
+  };
+
 
   var addDisabled = function(form) {
     $('form .submit').addClass('disabled');
@@ -40,27 +109,41 @@ $(function () {
     $('form .submit').prop('disabled', false);
   }
 
+
   var checkForm = function(form) {
-    checkInputs($(form));
+    var inputs = checkInputs($(form));
     var captcha = checkCaptcha();
-    console.log(captcha);
-    console.log(data);
-    if(captcha  
-        && data['name'] !== "" 
-        && data['message'] !== "" 
-        && (/\+7[0-9]{10}/.test(data['phone']) || data['email'] !== "" )) {
+    if(captcha && inputs) {
       removeDisabled(form);
     } else {
       addDisabled(form);
     }
-  }
+  };
 
+
+  // check events on inputs
   $('#messageForm input').on('change keyup blur', function() {
-    checkForm('#messageForm');
+    removeError($(this).attr('name'));
+    var error = validateInput($(this).attr('name'), $(this).val());
+    if (Object.keys(error).length > 0) {
+      setError(error);
+      addDisabled('#messageForm');
+    } else {
+      checkForm('#messageForm');
+    }
   })
+
   $('#messageForm textarea').on('change keyup blur', function() {
-    checkForm('#messageForm');
+    removeError($(this).attr('name'));
+    var error = validateInput($(this).attr('name'), $(this).val());
+    if (Object.keys(error).length > 0) {
+      setError(error);
+      addDisabled('#messageForm');
+    } else {
+      checkForm('#messageForm');
+    }
   })
+
   window.recaptchaCallback2 = function() {
     console.log('recaptcha callback2');
     checkForm('#messageForm');
@@ -71,11 +154,11 @@ $(function () {
   $('#messageForm').submit(function (event) {
     
     // заведём переменную, которая будет говорить о том валидная форма или нет
-    var formValid = true;
-    checkCaptcha();
+    // var formValid = true;
+    // checkCaptcha();
     
     // если форма валидна и длина капчи не равно пустой строке, то отправляем форму на сервер (AJAX)
-    if ((formValid)) {
+    // if ((formValid)) {
       var data = {};
 
       $(this).find('input').each(function() {
@@ -96,13 +179,13 @@ $(function () {
         })
         //при успешном выполнении запроса
         .done(function( msg ) {
-            // console.log(msg);
+            $('#messageFormValid-send').text('Сообщение отправлено!');
             var obj = jQuery.parseJSON(msg);
             console.log(obj);
         });
         // отменим стандартное действие браузера
         event.preventDefault();
-    }
+    // }
     
   });
 

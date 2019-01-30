@@ -75,7 +75,7 @@ $(function () {
   };
 
 
-  // при отправке формы messageForm на сервер (id="messageForm")
+  // при отправке формы orderForm на сервер (id="orderForm")
   $('#orderForm').submit(function (event) {
     
     // заведём переменную, которая будет говорить о том валидная форма или нет

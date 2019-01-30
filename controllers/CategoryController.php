@@ -21,7 +21,7 @@ class CategoryController extends ControllerComponent
     $catId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT, ['options' => ['min_range'=> 1, 'default' => $catIdDefault ]]);
     $page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT, ['options' => ['min_range'=> 1, 'default' => 1 ]]);
     $asc = filter_input(INPUT_GET, 'asc', FILTER_VALIDATE_REGEXP, ['options' => ['default' => 'asc', 'regexp' => '/^(asc|desc)$/i']]);
-    $order = filter_input(INPUT_GET, 'order', FILTER_VALIDATE_REGEXP, ['options' => ['default' => 'id', 'regexp' => '/^(id|name|author|prices)$/i']]);
+    $order = filter_input(INPUT_GET, 'order', FILTER_VALIDATE_REGEXP, ['options' => ['default' => 'id', 'regexp' => '/^(id|name|author|flags|price)$/i']]);
     $search = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING, ['flags' => FILTER_FLAG_STRIP_LOW]);   
     
     $link = ['controller' => 'category', 'asc' => $asc, 'order' => $order];
@@ -49,7 +49,7 @@ class CategoryController extends ControllerComponent
 
     $orderBy = [$order => $asc];
     $limit = [(($page - 1) * $itemInPage), $itemInPage];
-    $select = ['id', 'name', 'author', 'section_id', 'price', 'dsc'];
+    $select = ['id', 'name', 'author', 'section_id', 'price', 'dsc', 'flags'];
 
     $productModel = new ProductsModel;
     $rsProducts = $productModel->getList($where, $select, $orderBy, $limit, true);
@@ -64,7 +64,10 @@ class CategoryController extends ControllerComponent
  
     $categoryName = (new CategoriesModel)->getItem(['field' => 'id', 'value' => $catId, 'type' => '=']);
 
-    $this->smarty->assign('pageTitle', 'Reprint');
+    $cartProducts = parent::getSession('products', []);
+    $cartProductId = array_column($cartProducts,'id'); 
+
+    $this->smarty->assign('pageTitle', $categoryName['name']);
     $this->smarty->assign('catId', $catId);
     $this->smarty->assign('rsProducts', $rsProducts);
     $this->smarty->assign('page', $page);
@@ -76,7 +79,7 @@ class CategoryController extends ControllerComponent
     $this->smarty->assign('itemInPage', $itemInPage);
     $this->smarty->assign('search', $search);
     $this->smarty->assign('categoryName', $categoryName);
-
+    $this->smarty->assign('cartProductId', $cartProductId);
 
     $this->loadTemplate('razdel');
   }
