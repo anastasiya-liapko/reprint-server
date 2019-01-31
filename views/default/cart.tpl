@@ -92,12 +92,11 @@
                     <option {if $requisites.delivery_type == 'post'} selected {/if} value="post">Почтой</option>
                     <option {if $requisites.delivery_type == 'pickup'} selected {/if} value="pickup">Самовывоз</option>
                   </select>
-
-                  <span id="cartFormValid-delivery-type" class="error-text"></span>
                 </div>
               </div>
+              <span id="cartFormValid-delivery-type" class="error-text"></span>
              
-              <div class="order__delivery-descr info-text d-flex align-items-end">
+              <div class="order__delivery-descr info-text d-flex align-items-end mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
               </div>
 

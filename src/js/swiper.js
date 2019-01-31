@@ -7,6 +7,9 @@ $(document).ready(function () {
     slidesPerView: 1,
     loop: true,
     speed: 800,
+    autoplay: {
+      delay: 15000,
+    },
     
     navigation: {
       nextEl: '.swiper-button-next',

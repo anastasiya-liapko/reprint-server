@@ -16,16 +16,16 @@
 
           <form id="messageForm" class="contacts__form mt-4 mb-5">
             <div class="d-flex flex-column flex-md-row justify-content-between">
-              <div class="contacts__form-column d-flex flex-column mr-md-5 mb-5 mb-md-0">
-                <input id="messageForm-name" class="input mb-2" type="text" name="name" placeholder="Имя">
+              <div class="contacts__form-column d-flex flex-column justify-content-between mr-md-5 mb-5 mb-md-0">
+                <input id="messageForm-name" class="input" type="text" name="name" placeholder="Имя">
                 <span id="messageFormValid-name" class="error-text"></span>
-                <input id="messageForm-phone" class="input mb-2" type="text" name="phone" placeholder="Телефон">
+                <input id="messageForm-phone" class="input mt-2" type="text" name="phone" placeholder="Телефон">
                 <span id="messageFormValid-phone" class="error-text"></span>
-                <input id="messageForm-email" class="input" type="text" name="email" placeholder="Email">
+                <input id="messageForm-email" class="input mt-2" type="text" name="email" placeholder="Email">
                 <span id="messageFormValid-email" class="error-text"></span>
               </div>
-              <div class="contacts__form-column">
-                <textarea id="messageForm-message" class="input input_textarea" name="message" placeholder="Сообщение"></textarea>
+              <div class="contacts__form-column d-flex flex-column justify-content-between">
+                <textarea id="messageForm-message" class="input input_textarea flex-grow-1" name="message" placeholder="Сообщение"></textarea>
                 <span id="messageFormValid-message" class="error-text"></span>
               </div>
             </div>
@@ -33,7 +33,7 @@
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center align-items-md-start mt-5">
               <div class="recaptcha mr-md-5 mb-5 mb-md-0">
                 <div class="g-recaptcha" data-callback="recaptchaCallback2" data-sitekey="6Le-w4QUAAAAAOcxwpWlVCXIwO4m6ZYghcQNuj4q"></div>
-                <div class="text-danger pl-2" id="recaptchaError"></div>
+                <div class="error-text pl-2" id="recaptchaError"></div>
               </div>
 
               <div class="button__wrapper">

@@ -25,6 +25,7 @@ $(function () {
   };
 
   var removeError = function(inputName) {
+    $('#messageFormValid-send').text('');
     $('#messageFormValid-' + inputName).text('');
     $('#messageForm-' + inputName).removeClass('error');
   };
@@ -40,7 +41,17 @@ $(function () {
     if (inputValue === '') {
       $.each(required, function (i, requiredFieldName) {
         if (inputName === requiredFieldName) {
-          errorObject = {'name': inputName, 'error': 'Это обязательное поле'};
+          switch (inputName) {
+            case 'phone':
+              $('#messageForm-email').val() === '' ? errorObject = {'name': inputName, 'error': 'Введите один из контактов'} : '' ;
+              break;
+            case 'email':
+              $('#messageForm-phone').val() === '' ? errorObject = {'name': inputName, 'error': 'Введите один из контактов'} : '' ;
+              break;
+            default:
+              errorObject = {'name': inputName, 'error': 'Это обязательное поле'}
+              break;
+          }
         }
       });
     } else {
@@ -124,6 +135,8 @@ $(function () {
   // check events on inputs
   $('#messageForm input').on('change keyup blur', function() {
     removeError($(this).attr('name'));
+    $(this).attr('name') === 'phone' ? removeError('email') : '' ;
+    $(this).attr('name') === 'email' ? removeError('phone') : '' ;
     var error = validateInput($(this).attr('name'), $(this).val());
     if (Object.keys(error).length > 0) {
       setError(error);
@@ -146,6 +159,7 @@ $(function () {
 
   window.recaptchaCallback2 = function() {
     console.log('recaptcha callback2');
+    $('#recaptchaError').text('');
     checkForm('#messageForm');
   };
 
@@ -153,12 +167,10 @@ $(function () {
   // при отправке формы messageForm на сервер (id="messageForm")
   $('#messageForm').submit(function (event) {
     
-    // заведём переменную, которая будет говорить о том валидная форма или нет
-    // var formValid = true;
-    // checkCaptcha();
+    var captcha = checkCaptcha();
     
-    // если форма валидна и длина капчи не равно пустой строке, то отправляем форму на сервер (AJAX)
-    // if ((formValid)) {
+    // если длина капчи не равно пустой строке, то отправляем форму на сервер (AJAX)
+    if (captcha) {
       var data = {};
 
       $(this).find('input').each(function() {
@@ -174,7 +186,7 @@ $(function () {
         type: "POST",
         //URL-адрес запроса
         url: "form.php",
-        //передаваемые данные - formData
+        //передаваемые данные - data
         data: data
         })
         //при успешном выполнении запроса
@@ -182,10 +194,15 @@ $(function () {
             $('#messageFormValid-send').text('Сообщение отправлено!');
             var obj = jQuery.parseJSON(msg);
             console.log(obj);
+            $('#messageForm')[0].reset();
         });
-        // отменим стандартное действие браузера
-        event.preventDefault();
-    // }
+        
+    } else {
+      $('#recaptchaError').text('* Вы не прошли проверку "Я не робот"');
+    }
+
+    // отменим стандартное действие браузера
+    event.preventDefault();
     
   });
 

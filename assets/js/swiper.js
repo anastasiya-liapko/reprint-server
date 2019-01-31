@@ -1,1 +1,1 @@
-"use strict";$(document).ready(function(){new Swiper(".swiper-container",{slidesPerView:1,loop:!0,speed:800,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"}})});
+"use strict";$(document).ready(function(){new Swiper(".swiper-container",{slidesPerView:1,loop:!0,speed:800,autoplay:{delay:15e3},navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"}})});
